@@ -53,10 +53,7 @@ public class Carrera {
     public void add(Curso c){
         cursos.add(c);
     }
-    //----------------------------------------------------
-    public void StringP(){
-        // la verdd no creo q sirva para una ...
-    }
+    
    String codigo;
    String nombre;
    String titulo;
