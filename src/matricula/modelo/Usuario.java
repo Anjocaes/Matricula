@@ -1,7 +1,8 @@
 package matricula.modelo;
 
 public class Usuario {
-    public Usuario(String cedula, String nombre, String telefono, String correo, String clave) {
+    public Usuario(String cedula, String nombre, String telefono, String correo, 
+            String clave) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
