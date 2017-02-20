@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Matricula {
     public static void main(String[] args) {
-        List<Carrera> tmp = new ArrayList<Carrera>();      
+        List<Carrera> tmp = new ArrayList<>();      
         Universidad una = new Universidad("UNA");
         Carrera info = new Carrera("abc123","movil","bachiller");
         una.agregarCarrera(info);
