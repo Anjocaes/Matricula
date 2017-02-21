@@ -1,6 +1,7 @@
 package matricula.modelo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Carrera {
     public Carrera(String codigo, String nombre, String titulo) {
@@ -14,6 +15,10 @@ public class Carrera {
         this.cursos = cursos;
     }
 
+    public void obtenerCiclo(){
+        ciclos = ciclo.getCiclo();
+    }
+    
     public void setCiclo(Ciclo ciclo) {
         this.ciclo = ciclo;
     }
@@ -53,7 +58,8 @@ public class Carrera {
     public void add(Curso c){
         cursos.add(c);
     }
-    
+   
+       List<Ciclo> ciclos; 
    String codigo;
    String nombre;
    String titulo;

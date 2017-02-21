@@ -28,12 +28,7 @@ public class Universidad {
         return carrera;
     }
     
-    public void obtenerCiclo(){
-        ciclos = x.getCiclo();
-    }
-    
     List<Carrera> carrera = new ArrayList<>();
-    List<Ciclo> ciclos;
     Ciclo x;
     String nombre;
 }
