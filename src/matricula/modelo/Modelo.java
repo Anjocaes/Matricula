@@ -10,5 +10,6 @@ public class Modelo {
     Carrera carrera;
     Curso curso;
     Grupo grupo;
+    //me cago en juan del diablo
     
 }
