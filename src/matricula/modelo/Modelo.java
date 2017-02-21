@@ -9,5 +9,6 @@ public class Modelo {
     Universidad universidad;
     Carrera carrera;
     Curso curso;
+    Grupo grupo;
     
 }
