@@ -1,7 +1,7 @@
 package matricula.modelo;
 
 public class Curso {
-    public Curso(String codifo, String nombre, String credito, String horaSemanal) {
+    public Curso(String codifo, String nombre, int credito, int horaSemanal) {
         this.codifo = codifo;
         this.nombre = nombre;
         this.credito = credito;
@@ -10,6 +10,6 @@ public class Curso {
     
     String codifo;
     String nombre;
-    String credito;
-    String horaSemanal;
+    int credito;
+    int horaSemanal;
 }

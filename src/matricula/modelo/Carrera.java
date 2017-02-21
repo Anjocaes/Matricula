@@ -54,12 +54,13 @@ public class Carrera {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    //----------------Agregar a la lista de cursos------------------------------------
-    public void add(Curso c){
-        cursos.add(c);
+   
+    //----------------------------Curso----------------------------------------------------
+     public void crearCurso(String codigo, String nombre, int credito, int h_sem){
+        cursos.add(new Curso(codigo,nombre,credito,h_sem));
     }
    
-       List<Ciclo> ciclos; 
+   List<Ciclo> ciclos; 
    String codigo;
    String nombre;
    String titulo;
