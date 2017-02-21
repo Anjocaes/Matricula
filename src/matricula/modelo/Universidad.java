@@ -29,6 +29,5 @@ public class Universidad {
     }
     
     List<Carrera> carrera = new ArrayList<>();
-    Ciclo x;
     String nombre;
 }
