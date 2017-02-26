@@ -4,8 +4,10 @@ package matricula.modelo;
 public class Modelo {
     public Modelo(){
             universidad= new Universidad("Universidad Nacional");
+            
             carrera =new Carrera("EIF","Ingenieria en Sistema de infomacion",
                     "Bachillerato y salida lateral de Diplomado en Prgramacion de Aplicaciones Infimaticas");
+            universidad.agregarCarrera(carrera);
             
     }
     //----------------Metodos de carrera-------------------------------------
@@ -31,11 +33,8 @@ public class Modelo {
     public void busqCursoCarrera(String carr){
         
     }
-    public void addCurso(){
-         
-    }
-    public void deleteCurso(){
-         
+    public void deleteCurso(String codigo){
+        
     }
     public void OrdenarCurso(){
          
@@ -62,7 +61,18 @@ public class Modelo {
     public void historial(){
         
     }
-    //-----------------------------------------------------------------------
+    //-----------------Admin----------------------------------------------
+    public void addProfesor(Profesor p, Curso c, int g){
+        carrera.cursos.forEach(a->{
+            if(c.codifo.equals(a.codifo)){
+                a.grupos.forEach(b->{
+                    if(g==b.numero){
+                        b.setProfesor(p);
+                    }
+                });
+            }
+        });
+    }
     
     Universidad universidad;
     Carrera carrera;

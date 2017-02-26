@@ -35,8 +35,25 @@ public class Grupo {
         this.horario = horario;
     }
     
-    private int numero;
-    private String horario;
+    public void addAlumno(Alumno e){
+        alumnos.add(e);
+    }
+    
+    public Alumno busqAlum(String ced){
+        alumnos.forEach(a->{
+           if(ced.equals(a.cedula))
+               alumno=a;
+        });
+        return alumno;
+    }
+    
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
+    }
+    
+    int numero;
+    String horario;
     Profesor profesor;
     ArrayList<Alumno> alumnos;
+    Alumno alumno;
 }

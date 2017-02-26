@@ -1,12 +1,21 @@
 package matricula.modelo;
 
-public class Persona extends Usuario{
+public class Persona{
 
-    public Persona(String cedula, String nombre, String telefono, String correo, String clave) {
-        super(correo, clave);
+    public Persona(String cedula, String nombre, String telefono,String correo, String clave) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
+        this.correo = correo;
+        this.clave = clave;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public String getCedula() {
@@ -36,4 +45,7 @@ public class Persona extends Usuario{
     String cedula;
     String nombre;
     String telefono;
+    //--------------------
+    String clave;
+    String correo;
 }
