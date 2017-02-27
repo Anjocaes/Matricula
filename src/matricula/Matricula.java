@@ -4,15 +4,13 @@ import matricula.modelo.Universidad;
 import matricula.modelo.Carrera;
 import java.util.ArrayList;
 import java.util.List;
+import matricula.control.Control;
+import matricula.vista.Vista;
 
 public class Matricula {
     public static void main(String[] args) {
-        List<Carrera> tmp = new ArrayList<>();      
-        Universidad una = new Universidad("UNA");
-//       Carrera info = new Carrera("abc123","movil","bachiller");
-//        una.agregarCarrera(info);
-//        tmp = una.getCarrera();
-//        tmp.forEach(carrera ->  System.out.println(carrera));
+       Control c=new Control();
+       Vista v=new Vista("Pagina de Prueba",c);
+       v.init();
     }
-    
 }
