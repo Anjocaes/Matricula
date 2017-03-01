@@ -29,5 +29,5 @@ public class Universidad {
     }
     
     List<Carrera> carrera = new ArrayList<>();
-    String nombre;
+    String nombre = "Universidad Nacional";
 }
