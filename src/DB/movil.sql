@@ -26,10 +26,15 @@ CREATE TABLE `moviles`.`persona` (
   `Nombre` VARCHAR(45) NOT NULL,
   `Credito` INT NOT NULL,
   `HSemanal` INT NOT NULL,
-  PRIMARY KEY (`Codigo`)); 
+  `Grupo` INT NOT NULL,
+  PRIMARY KEY (`Codigo`),
+  CONSTRAINT `fk_grupo ` FOREIGN KEY (Grupo) REFERENCES `moviles`.`grupo`(Numero)); 
   
   CREATE TABLE `moviles`.`grupo` (
   `Numero` INT NOT NULL,
   `Horario` VARCHAR(255) NOT NULL,
   `CedProfesor` VARCHAR(12) NOT NULL,
-  PRIMARY KEY (`Numero`));
+  `CedAlumno` VARCHAR(12) NOT NULL,
+  PRIMARY KEY (`Numero`),
+  CONSTRAINT `fk_profesor ` FOREIGN KEY (CedProfesor) REFERENCES `moviles`.`persona`(cedula),
+  CONSTRAINT `fk_alumno ` FOREIGN KEY (CedAlumno) REFERENCES `moviles`.`persona`(cedula));
