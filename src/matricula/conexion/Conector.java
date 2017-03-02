@@ -7,7 +7,11 @@ package matricula.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,10 +28,10 @@ private String baseDatos;
 
     public Conector() {
         usuario = "root";
-        password ="root";
+        password ="";
         server = "127.0.0.1";
         puerto = "3306";
-        baseDatos= "moviles";    
+        baseDatos= "moviles";  
     }
 
     public Conector(String usuario, String server, String password, String puerto, String baseDatos) {
@@ -49,6 +53,27 @@ private String baseDatos;
             System.out.println("Error"+e.getMessage());
             return null;
         }   
+    }
+    
+        public int executeUpdate(String statement) {
+        try {
+            Statement stm = cnx.createStatement();
+            stm.executeUpdate(statement);
+            return stm.getUpdateCount();
+        } catch (SQLException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
+    
+    public ResultSet executeQuery(String statement){
+        try {
+            Statement stm = cnx.createStatement();
+            return stm.executeQuery(statement);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conector.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public void cerrarConexion() throws SQLException
@@ -95,4 +120,6 @@ private String baseDatos;
     public void setBaseDatos(String baseDatos) {
         this.baseDatos = baseDatos;
     }
+    
+    Connection cnx;
 }
