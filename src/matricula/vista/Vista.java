@@ -89,8 +89,8 @@ public class Vista extends JFrame {
         }
     }
     public void selecUsser(){
-//        vm=new VentanaMatri("Matriculador",gestor);
-//        vm.init();
+//       vm=new VentanaMatri("Matriculador",gestor);
+//       vm.init();
         vad= new VentanaAdmin("Administracion",gestor);
         vad.init();
         this.dispose();

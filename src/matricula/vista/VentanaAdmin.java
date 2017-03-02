@@ -31,7 +31,7 @@ public class VentanaAdmin extends JFrame {
         setMinimumSize(new Dimension(400, 400));
         setLocationRelativeTo(null);
         setResizable(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     public void ajustarComponentes(Container c){
         c.setLayout(new BorderLayout());
@@ -39,7 +39,7 @@ public class VentanaAdmin extends JFrame {
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         //-----------Borde-----------------
-          JPanel gen = new JPanel(new BorderLayout() );
+        JPanel gen = new JPanel(new BorderLayout() );
         gen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gen.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(new Color(13,159,238)), "Mantenimientos"));
@@ -56,22 +56,21 @@ public class VentanaAdmin extends JFrame {
         gc.insets=new Insets(6,6,6,6);
         gc.gridx=0;
         gc.gridy=0;
-        bt.add(btP= new JButton("Profesor"),gc);
+        bt.add(btP= new JButton("Modificar"),gc);
             btP.setPreferredSize(new Dimension(120,90));
         gc.gridx=1;
         gc.gridy=0;
-        bt.add(btA= new JButton("Alumnos"),gc);
+        bt.add(btA= new JButton("Agregar"),gc);
                 btA.setPreferredSize(new Dimension(120,90));
         gc.gridx=0;
         gc.gridy=1;
-        bt.add(btCr= new JButton("Carrera"),gc);
-                btCr.setPreferredSize(new Dimension(120,90));
+        bt.add(btE= new JButton("Eliminar"),gc);
+                btE.setPreferredSize(new Dimension(120,90));
         gc.gridx=1;
         gc.gridy=1;
-        bt.add(btG= new JButton("Grupo"),gc);
+        bt.add(btG= new JButton("Mant.Grupos"),gc);
                 btG.setPreferredSize(new Dimension(120,90));
-                
-                
+                      
         gen.add(bt,BorderLayout.CENTER);
     }
     public void init(){
@@ -90,16 +89,26 @@ public class VentanaAdmin extends JFrame {
                abrirV();
            }
        });
+       btA.addActionListener(new ActionListener(){
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               abrirVSA();
+           }
+       });
     }
     public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            System.exit(0);
+            abrirV();
         }
     }
     public void abrirV(){
         v = new Vista("Login",gestor);
         v.init();
         dispose();
+    }
+    public void abrirVSA(){
+        vsal = new vSAL("Seleccion",gestor);
+        vsal.init();
     }
      
     
@@ -109,9 +118,10 @@ public class VentanaAdmin extends JFrame {
     private JButton btD;
     private JButton btP;
     private JButton btA;
-    private JButton btCr;
+    private JButton btE;
     private JButton btG;
     
     //-----Ventanas------
     private Vista v;
+    private vSAL vsal;
 }

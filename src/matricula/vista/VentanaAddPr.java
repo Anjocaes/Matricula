@@ -23,14 +23,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import matricula.control.Control;
 
 /**
  *
  * @author Marko
  */
-public class VentanaAddAl extends JFrame{
-    public VentanaAddAl(String titulo, Control cont){
+public class VentanaAddPr extends JFrame {
+    public VentanaAddPr(String titulo, Control cont){
         super(titulo);
         gestor = cont;
         ajustarComponentes(getContentPane());
@@ -50,7 +51,7 @@ public class VentanaAddAl extends JFrame{
         JPanel gen = new JPanel(new BorderLayout() );
         gen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gen.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(13,159,238)), "Nuevo Alumno"));
+                BorderFactory.createLineBorder(new Color(13,159,238)), "Nuevo Profesor"));
         principal.add(gen, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
         //------------------------------------------
@@ -69,31 +70,31 @@ public class VentanaAddAl extends JFrame{
         inf.add(new JLabel("Cedula: "),gc);
         gc.gridx=1;
         gc.gridy=1;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(ced=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=2;
         inf.add(new JLabel("Telefono: "),gc);
         gc.gridx=1;
         gc.gridy=2;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(tel=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=3;
         inf.add(new JLabel("Correo: "),gc);
         gc.gridx=1;
         gc.gridy=3;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(cor=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=4;
         inf.add(new JLabel("Fecha de Nacimiento: "),gc);
         gc.gridx=1;
         gc.gridy=4;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(f_nac=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=5;
         inf.add(new JLabel("Clave: "),gc);
         gc.gridx=1;
         gc.gridy=5;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(clave=new JTextField(15),gc);
         
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -128,7 +129,8 @@ public class VentanaAddAl extends JFrame{
         }
     }
     
-    //--------------
+    
+     //--------------
     Control gestor; 
     GridBagConstraints gc;
     

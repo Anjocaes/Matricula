@@ -10,7 +10,6 @@ public class Carrera {
         this.titulo = titulo;
         
     }
-
     public String getCodigo() {
         return codigo;
     }
