@@ -1,5 +1,6 @@
 package matricula;
 
+import AccesoDatos.AccesoDatos;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import matricula.conexion.Conector;
 import matricula.control.Control;
+import matricula.modelo.Alumno;
 import matricula.vista.Vista;
 
 public class Matricula {
-    public static void main(String[] args) throws SQLException {
-        Conector conec = new Conector();
+    public static void main(String[] args) throws SQLException, Exception {
+        /*Conector conec = new Conector();
         Connection x = conec.getCon();
         System.out.println("Insertando ...");
         Statement s = x.createStatement();
@@ -21,6 +23,9 @@ public class Matricula {
         s.executeUpdate(query1);
        Control c=new Control();
        Vista v=new Vista("Pagina de Prueba",c);
-       v.init();
+       v.init();*/
+        AccesoDatos ac = new AccesoDatos();
+        ac.addAlumno(new Alumno("1","a","1","@","1","1","1"));
+        int a = 1;
     }
 }

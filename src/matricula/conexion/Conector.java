@@ -18,44 +18,33 @@ import java.util.logging.Logger;
  * @author Extreme PC
  */
 public class Conector {
-
-private Connection con;
-private String usuario;
-private String server;
-private String password;
-private String puerto;
-private String baseDatos;
-
-    public Conector() {
-        usuario = "root";
-        password ="";
-        server = "127.0.0.1";
-        puerto = "3306";
-        baseDatos= "moviles";  
-    }
-
-    public Conector(String usuario, String server, String password, String puerto, String baseDatos) {
-        this.usuario = usuario;
-        this.server = server;
-        this.password = password;
-        this.puerto = puerto;
-        this.baseDatos = baseDatos;
+     Connection cnx;
+    
+    public Conector(String servidorArg, String usuarioArg, String claveArg){
+        if (servidorArg!=null){
+            cnx=this.getConnection(servidorArg, usuarioArg, claveArg);
+        }
+        else{
+            cnx=this.getConnection(null, null, null);            
+        }
     }
     
-    public Connection getCon()
-    {
+    public Connection getConnection(String servidorArg, String usuarioArg, String claveArg){
         try {
-             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String stringConexion = "jdbc:mysql://"+server+":"+puerto+"/"+baseDatos;
-            con = DriverManager.getConnection(stringConexion, usuario, password);
-            return con;
+            String servidor=(servidorArg==null?SERVIDOR:servidorArg);
+            String usuario=(usuarioArg==null?USUARIO:usuarioArg);
+            String clave=(claveArg==null?CLAVE:claveArg);
+            String URL_conexion=PROTOCOLO+"//"+ servidor+":"+PUERTO+"/"+BASEDATOS+"?user="+usuario+"&password="+clave;
+            Class.forName(MANEJADOR_DB).newInstance();
+            return DriverManager.getConnection(URL_conexion);
         } catch (Exception e) {
-            System.out.println("Error"+e.getMessage());
-            return null;
-        }   
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        } 
+        return null;
     }
     
-        public int executeUpdate(String statement) {
+    public int executeUpdate(String statement) {
         try {
             Statement stm = cnx.createStatement();
             stm.executeUpdate(statement);
@@ -65,7 +54,7 @@ private String baseDatos;
             return 0;
         }
     }
-    
+
     public ResultSet executeQuery(String statement){
         try {
             Statement stm = cnx.createStatement();
@@ -75,51 +64,12 @@ private String baseDatos;
         }
         return null;
     }
-    
-    public void cerrarConexion() throws SQLException
-    {
-        con.close();
-    }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getServer() {
-        return server;
-    }
-
-    public void setServer(String server) {
-        this.server = server;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPuerto() {
-        return puerto;
-    }
-
-    public void setPuerto(String puerto) {
-        this.puerto = puerto;
-    }
-
-    public String getBaseDatos() {
-        return baseDatos;
-    }
-
-    public void setBaseDatos(String baseDatos) {
-        this.baseDatos = baseDatos;
-    }
-    
-    Connection cnx;
+    private static final String MANEJADOR_DB = "com.mysql.jdbc.Driver";
+    private static final String PROTOCOLO = "jdbc:mysql:";
+    private static final String SERVIDOR = "localhost";
+    private static final String PUERTO = "3306";
+    private static final String USUARIO = "root";
+    private static final String CLAVE = "";
+    private static final String BASEDATOS = "moviles";
 }
