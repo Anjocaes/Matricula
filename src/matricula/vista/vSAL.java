@@ -102,12 +102,7 @@ public class vSAL extends JFrame {
         c.add(b,BorderLayout.SOUTH);
     }
     public void confiEventos(){
-       btC.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               dispose();
-           }
-       });
+       btC.addActionListener((ActionEvent e) -> {dispose();});
        add1.addActionListener((ActionEvent e) -> {abrirVaddA();});
        add2.addActionListener((ActionEvent e) -> {abrirVaddP();});
        add3.addActionListener((ActionEvent e) -> {abrirVaddC();});

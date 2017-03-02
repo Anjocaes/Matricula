@@ -5,6 +5,22 @@ public class Alumno extends Persona{
         this.carrera = carrera;
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
     
     String carrera;
     String fechaNacimiento;

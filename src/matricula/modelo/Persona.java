@@ -41,6 +41,14 @@ public class Persona{
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
     
     String cedula;
     String nombre;
@@ -48,4 +56,13 @@ public class Persona{
     //--------------------
     String clave;
     String correo;
+    int tipo;
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
 }
