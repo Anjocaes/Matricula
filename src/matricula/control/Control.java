@@ -1,7 +1,5 @@
 package matricula.control;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import matricula.modelo.Modelo;
 
 public class Control {
@@ -13,7 +11,15 @@ public class Control {
        try {
            datos.createAlumno(ced, nom, tel, cor, cl, car, f_n, 1);
        } catch (Exception ex) {
-           System.out.print("aqui");
+           System.out.print("Modelo -> addAlumno");
+       }
+   }
+   public void addProfesor(String ced, String nom, String tel, String cor, 
+           String cl){
+       try {
+           datos.createProfesor(ced, nom, tel, cor, cl, 2);
+       } catch (Exception ex) {
+           System.out.print("Modelo -> addProfe");
        }
    }
    

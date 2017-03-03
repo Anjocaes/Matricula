@@ -24,8 +24,12 @@ public class Modelo {
         }
     }
     public void createProfesor(String ced, String nom, String tel, 
-            String cor, String cla, String car, String f_n, int t){
-        
+            String cor, String cla, int t){
+        try {
+            ds.addProfesor(new Profesor(ced,nom,tel,cor,cla,t));
+        } catch (Exception ex) {
+            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public void createCarrera(){
         

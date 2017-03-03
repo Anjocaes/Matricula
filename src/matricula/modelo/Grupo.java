@@ -8,7 +8,6 @@ public class Grupo {
     public Grupo(int numero, String horario) {
         this.numero = numero;
         this.horario = horario;
-       // this.profesor =new Profesor("---------","P.A","xxxxx-xxxxx","ejemplo@una.ac.cr","1234");
     }
 
     public int getNumero() {
