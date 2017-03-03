@@ -69,31 +69,31 @@ public class VentanaAddAl extends JFrame{
         inf.add(new JLabel("Cedula: "),gc);
         gc.gridx=1;
         gc.gridy=1;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(ced=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=2;
         inf.add(new JLabel("Telefono: "),gc);
         gc.gridx=1;
         gc.gridy=2;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(tel=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=3;
         inf.add(new JLabel("Correo: "),gc);
         gc.gridx=1;
         gc.gridy=3;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(cor=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=4;
         inf.add(new JLabel("Fecha de Nacimiento: "),gc);
         gc.gridx=1;
         gc.gridy=4;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(f_nac=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=5;
         inf.add(new JLabel("Clave: "),gc);
         gc.gridx=1;
         gc.gridy=5;
-        inf.add(nom=new JTextField(15),gc);
+        inf.add(clave=new JTextField(15),gc);
         
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -115,9 +115,8 @@ public class VentanaAddAl extends JFrame{
                 cerrarApp();
             }
         });
-         btC.addActionListener((ActionEvent e) -> {
-             dispose();
-         });
+         btA.addActionListener((ActionEvent e) -> { addAlumno(); });
+         btC.addActionListener((ActionEvent e) -> { dispose(); });
     }
     public void init(){
         setVisible(true);
@@ -126,6 +125,10 @@ public class VentanaAddAl extends JFrame{
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
             dispose();
         }
+    }
+    public void addAlumno(){
+        gestor.addAlmuno(ced.getText(), nom.getText(), tel.getText(), 
+                cor.getText(), clave.getText(), car, f_nac.getText());
     }
     
     //--------------
@@ -141,4 +144,5 @@ public class VentanaAddAl extends JFrame{
     private JTextField cor;
     private JTextField clave;
     private JTextField f_nac;
+    private String car="ingenieria de sistemas";
 }

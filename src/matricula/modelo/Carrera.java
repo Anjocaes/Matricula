@@ -65,14 +65,14 @@ public class Carrera {
     }
     
     //--------------------------Alumnos--------------------------------------
-    public void addAlumno(String ced, String nom, String tel, String correo, 
-            String clave, String carrera, String fechaNac){
-        alumnos.add(new Alumno(ced, nom, tel, correo, clave, carrera, fechaNac));
-    }
-    
-    public ArrayList<Alumno> getAlumnos(){
-        return alumnos;
-    }
+//    public void addAlumno(String ced, String nom, String tel, String correo, 
+//            String clave, String carrera, String fechaNac){
+//        alumnos.add(new Alumno(ced, nom, tel, correo, clave, carrera, fechaNac));
+//    }
+//    
+//    public ArrayList<Alumno> getAlumnos(){
+//        return alumnos;
+//    }
 
 //----------------------------------------------------------------------------    
    List<Ciclo> ciclos; 

@@ -2,12 +2,13 @@ package matricula.modelo;
 
 public class Persona{
 
-    public Persona(String cedula, String nombre, String telefono,String correo, String clave) {
+    public Persona(String cedula, String nombre, String telefono,String correo, String clave,int tipo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
         this.clave = clave;
+        this.tipo=tipo;
     }
 
     public String getClave() {
