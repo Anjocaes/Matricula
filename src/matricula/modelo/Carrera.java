@@ -58,7 +58,7 @@ public class Carrera {
     
     public Curso buqCursoCod(String cod){
      cursos.forEach(c->{
-         if(cod.equals(c.codifo))
+         if(cod.equals(c.codigo))
              curso=c;
      });
      return curso;

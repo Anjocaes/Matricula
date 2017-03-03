@@ -3,15 +3,15 @@ package matricula.modelo;
 import java.util.ArrayList;
 
 public class Curso {
-    public Curso(String codifo, String nombre, int credito, int horaSemanal) {
-        this.codifo = codifo;
+    public Curso(String codigo, String nombre, int credito, int horaSemanal) {
+        this.codigo = codigo;
         this.nombre = nombre;
         this.credito = credito;
         this.horaSemanal = horaSemanal;
     }
 
-    public String getCodifo() {
-        return codifo;
+    public String getCodigo() {
+        return codigo;
     }
 
     public String getNombre() {
@@ -39,7 +39,7 @@ public class Curso {
     }
 
     public void setCodifo(String codifo) {
-        this.codifo = codifo;
+        this.codigo = codifo;
     }
 
     public void setNombre(String nombre) {
@@ -66,7 +66,7 @@ public class Curso {
         requerimientos.add(s);
     }
     //--------------------------------------------------------------
-    String codifo;
+    String codigo;
     String nombre;
     int credito;
     int horaSemanal;
