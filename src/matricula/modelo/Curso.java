@@ -38,7 +38,7 @@ public class Curso {
         return grupos;
     }
 
-    public void setCodifo(String codifo) {
+    public void setCodigo(String codifo) {
         this.codigo = codifo;
     }
 

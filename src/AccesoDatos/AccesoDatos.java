@@ -12,6 +12,7 @@ import matricula.modelo.Ciclo;
 import matricula.modelo.Curso;
 import matricula.modelo.Grupo;
 import matricula.modelo.Matriculador;
+import matricula.modelo.Nota;
 import matricula.modelo.Profesor;
 
 public class AccesoDatos {
@@ -265,10 +266,53 @@ public class AccesoDatos {
         }
     }    
     
+    //Curso
+    
+    public Curso cursoGet(int codigo) throws Exception{
+        String sql = "select * from curso where curso.codigo = '%s'";
+        sql = String.format(sql, codigo);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toCurso(rs);
+        }else{
+            throw new Exception("Matriculador no existe");
+        }
+    }
+    
+    public List<Curso> cursoTotal()throws Exception{
+        String sql = "select * from persona where persona.tipo = 3";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Curso obj = toCurso(rs);
+            if(obj != null)
+                cur.add(obj);
+            else
+                throw new Exception("No existen Matriculador");
+        }
+        return cur;
+    }   
+    
+    private Curso toCurso(ResultSet rs){
+        try {
+            Curso obj = new Curso("","",0,0);
+            //String codigo, String nombre, int credito, int horaSemanal
+            obj.setCodigo(rs.getString("Codigo"));
+            obj.setNombre(rs.getString("Nombre"));
+            obj.setCredito(rs.getInt("Credito"));
+            obj.setHoraSemanal(rs.getInt("HSemanal"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    } 
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();
     ArrayList<Administrativo> adm = new ArrayList<>();
     ArrayList<Matriculador> mat = new ArrayList<>();
+    ArrayList<Curso> cur = new ArrayList<>();
+    ArrayList<Grupo> gru = new ArrayList<>();
+    ArrayList<Nota> not = new ArrayList<>();
     private final Conector connect;
 }
