@@ -369,7 +369,7 @@ public class AccesoDatos {
         }
     }
     
-    //Matricula
+    //Nota
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();
