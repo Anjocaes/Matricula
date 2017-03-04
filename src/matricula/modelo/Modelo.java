@@ -18,23 +18,18 @@ public class Modelo {
     public void createAlumno(String ced, String nom, String tel, 
             String cor, String cla, String car, String f_n){
         try {
-            ds.addAlumno(new Alumno(ced,nom,tel,cor,cla,car,f_n));
+            ds.addAlumno(new Alumno(ced,nom,tel,cor,cla,car,f_n,1));
         } catch (Exception ex) {
            
         }
     }
     public void createProfesor(String ced, String nom, String tel, 
-<<<<<<< HEAD
-            String cor, String cla, String car, String f_n){
-        
-=======
-            String cor, String cla, int t){
+            String cor, String cla, String car, String f_n, int){
         try {
             ds.addProfesor(new Profesor(ced,nom,tel,cor,cla,t));
         } catch (Exception ex) {
             Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> origin/master
     }
     public void createCarrera(){
         
