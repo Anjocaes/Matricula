@@ -23,7 +23,7 @@ public class vSAL extends JFrame {
         ajustarComponentes(getContentPane());
         confiEventos();
         //pack();
-        setMinimumSize(new Dimension(250, 300));
+        setMinimumSize(new Dimension(250, 400));
         setLocationRelativeTo(null);
         setResizable(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -96,6 +96,30 @@ public class vSAL extends JFrame {
          add5.setPreferredSize(new Dimension(50, 50));
         add5.setIcon(iA4);
         
+         gc = new GridBagConstraints();
+        gc.gridx = 0;
+        gc.gridy = 5;
+        p1.add(l4 = new JLabel("Matriculador   "), gc);
+        l4.setFont(new Font("ComicSands", Font.BOLD, 12));
+        gc.gridx = 1;
+        gc.gridy = 5;
+        p1.add(add6 =new JButton("") , gc);
+            ImageIcon iA6=new ImageIcon(getClass().getResource("/images/add.png"));
+            add6.setPreferredSize(new Dimension(50, 50));
+            add6.setIcon(iA6);
+        
+         gc = new GridBagConstraints();
+        gc.gridx = 0;
+        gc.gridy = 6;
+        p1.add(l4 = new JLabel("Administrador   "), gc);
+        l4.setFont(new Font("ComicSands", Font.BOLD, 12));
+        gc.gridx = 1;
+        gc.gridy = 6;
+        p1.add(add7 =new JButton("") , gc);
+         ImageIcon iA7=new ImageIcon(getClass().getResource("/images/add.png"));
+         add7.setPreferredSize(new Dimension(50, 50));
+        add7.setIcon(iA7);
+        
         c.add(BorderLayout.CENTER,p1);
         JPanel b = new JPanel(new BorderLayout());
         b.add(btC=new JButton("Cancelar"),BorderLayout.CENTER);
@@ -144,6 +168,8 @@ public class vSAL extends JFrame {
     private JButton add3;
     private JButton add4;
     private JButton add5;
+    private JButton add6;
+    private JButton add7;
     private JButton btC;
     
     private VentanaAddAl vaddA;

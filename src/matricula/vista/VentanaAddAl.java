@@ -127,8 +127,11 @@ public class VentanaAddAl extends JFrame{
         }
     }
     public void addAlumno(){
-        gestor.addAlmuno(ced.getText(), nom.getText(), tel.getText(), 
+        if(JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+             gestor.addAlmuno(ced.getText(), nom.getText(), tel.getText(), 
                 cor.getText(), clave.getText(), car, f_nac.getText());
+             dispose();
+        }
     }
     
     //--------------
