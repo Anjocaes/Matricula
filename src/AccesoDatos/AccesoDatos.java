@@ -57,14 +57,20 @@ public class AccesoDatos {
         int rs = connect.executeUpdate(sql);       
     }
      
-     public void matricular(Grupo x, Alumno a, Profesor p)throws Exception{
-        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('%s','%s','%d','%s')";
-        sql=String.format(sql, p.getCedula(), a.getCedula(), x.getNumero(), "");
+     public void matricular(Grupo x, Alumno a)throws Exception{
+        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('','%s','%d','%s')";
+        sql=String.format(sql, a.getCedula(), x.getNumero(), "");
         int rs = connect.executeUpdate(sql);       
     }
 
+    public void ponerProfesor(Profesor p, Grupo g)throws Exception{
+        String sql = "update matricula set CedProfesor = '%s' where matricula.Grupo = '%d'";
+        sql=String.format(sql, p.getCedula(), g.getNumero());
+        int rs = connect.executeUpdate(sql);       
+    }
+     
     public void ponerNota(Grupo x, Alumno a, int n)throws Exception{
-        String sql = "update matricula set nota = '%d' WHERE matricula.cedalumno = '%s' and matricula.grupo = '%s'";
+        String sql = "update matricula set nota = '%d' WHERE matricula.cedalumno = '%s' and matricula.grupo = '%d'";
         sql=String.format(sql, n, a.getCedula(), x.getNumero());
         int rs = connect.executeUpdate(sql);       
     }
@@ -226,7 +232,7 @@ public class AccesoDatos {
         }
     }    
     
-    //Administrativo
+    //Matriculador
 
          public Matriculador matriculadorGet(String cedula) throws Exception{
         String sql = "select * from persona where persona.cedula = '%s'";
@@ -310,7 +316,60 @@ public class AccesoDatos {
         }
     } 
     
+    //Grupo
     
+    public Grupo grupoGet(int numero) throws Exception{
+        String sql = "select * from grupo where grupo.numero = '%d'";
+        sql = String.format(sql, numero);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toGrupo(rs);
+        }else{
+            throw new Exception("Grupo no existe");
+        }
+    }
+    
+    public List<Grupo> grupoTotal()throws Exception{
+        String sql = "select * from grupo";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Grupo obj = toGrupo(rs);
+            if(obj != null)
+                gru.add(obj);
+            else
+                throw new Exception("No existen Grupo");
+        }
+        return gru;
+    }
+    
+    public List<Grupo> grupoCurso(Curso c)throws Exception{
+        String sql = "select * from grupo where grupo.curso = '%s'";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Grupo obj = toGrupo(rs);
+            if(obj != null)
+                gru.add(obj);
+            else
+                throw new Exception("No existen Grupo");
+        }
+        return gru;
+    } 
+    
+    private Grupo toGrupo(ResultSet rs){
+        try {
+            Grupo obj = new Grupo(0,"");
+            //int numero, String horario
+            obj.setNumero(rs.getInt("Numero"));
+            obj.setHorario(rs.getString("Horario"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
+    //Matricula
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();

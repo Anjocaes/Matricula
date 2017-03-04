@@ -19,7 +19,7 @@ CREATE database `moviles` ;
   CREATE TABLE `moviles`.`grupo` (
   `Numero` INT NOT NULL,
   `Horario` VARCHAR(255) NOT NULL,
-  `Curso` INT NOT NULL,
+  `Curso` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`Numero`),
   CONSTRAINT `fk_curso` FOREIGN KEY (Curso) REFERENCES `moviles`.`curso`(Codigo));
   

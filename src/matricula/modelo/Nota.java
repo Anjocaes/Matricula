@@ -2,11 +2,11 @@ package matricula.modelo;
 
 public class Nota {
 
-    public Nota(Curso curso, int nota) {
+    public Nota(String curso, int nota) {
         this.curso = curso;
         this.nota = nota;
     }
     
-    Curso curso;
+    String curso;
     int nota;
 }
