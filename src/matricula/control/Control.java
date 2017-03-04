@@ -9,7 +9,7 @@ public class Control {
    public void addAlmuno(String ced, String nom, String tel, String cor, 
            String cl, String car, String f_n){
        try {
-           datos.createAlumno(ced, nom, tel, cor, cl, car, f_n, 1);
+           datos.createAlumno(ced, nom, tel, cor, cl, car, f_n);
        } catch (Exception ex) {
            System.out.print("Modelo -> addAlumno");
        }
@@ -17,7 +17,7 @@ public class Control {
    public void addProfesor(String ced, String nom, String tel, String cor, 
            String cl){
        try {
-           datos.createProfesor(ced, nom, tel, cor, cl, 2);
+           datos.createProfesor(ced, nom, tel, cor, cl);
        } catch (Exception ex) {
            System.out.print("Modelo -> addProfe");
        }
