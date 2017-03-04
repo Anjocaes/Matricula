@@ -16,15 +16,15 @@ public class Modelo {
             
     }
     public void createAlumno(String ced, String nom, String tel, 
-            String cor, String cla, String car, String f_n, int t){
+            String cor, String cla, String car, String f_n){
         try {
-            ds.addAlumno(new Alumno(ced,nom,tel,cor,cla,car,f_n,t));
+            ds.addAlumno(new Alumno(ced,nom,tel,cor,cla,car,f_n));
         } catch (Exception ex) {
            
         }
     }
     public void createProfesor(String ced, String nom, String tel, 
-            String cor, String cla, String car, String f_n, int t){
+            String cor, String cla, String car, String f_n){
         
     }
     public void createCarrera(){

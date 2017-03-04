@@ -11,18 +11,14 @@ public class Ciclo {
     }
     
     public void agregarCiclo(int año, String numero, String f_Inicio, String f_Final){
-        ciclo.add(new Ciclo(año, numero, f_Inicio, f_Final));
+        ciclo = new Ciclo(año, numero, f_Inicio, f_Final);
     }
     
-    public void eliminarCiclo(Ciclo cic){
-        ciclo.remove(cic);
-    }
-
-    public List<Ciclo> getCiclo() {
-        return ciclo;
+    public String getCiclo() {
+        return ciclo.numero;
     }
     
-    List<Ciclo> ciclo;
+    Ciclo ciclo = new Ciclo(2017, "I ciclo", "12/2/17", "21/6/17");
     int año;
     String numero;
     String fechaIni;
