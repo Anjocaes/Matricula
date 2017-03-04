@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.Exception;
 import matricula.conexion.Conector;
 import matricula.modelo.Administrativo;
 import matricula.modelo.Alumno;
@@ -113,7 +112,7 @@ public class AccesoDatos {
     
     private Alumno toAlumno(ResultSet rs){
         try {
-            Alumno obj= new Alumno("","","","","","");
+            Alumno obj= new Alumno("","","","","","",0);
             //String cedula, String nombre, String telefono, String correo, String clave, String fechaNacimiento
             obj.setCedula(rs.getString("Cedula"));
             obj.setNombre(rs.getString("Nombre"));
@@ -170,7 +169,7 @@ public class AccesoDatos {
         
     private Profesor toProfesor(ResultSet rs){
         try {
-            Profesor obj= new Profesor("","","","","");
+            Profesor obj= new Profesor("","","","","",0);
             //String cedula, String nombre, String telefono, String correo, String clave
             obj.setCedula(rs.getString("Cedula"));
             obj.setNombre(rs.getString("Nombre"));
@@ -213,7 +212,7 @@ public class AccesoDatos {
     
     private Administrativo toAdministrativo(ResultSet rs){
         try {
-            Administrativo obj= new Administrativo("","","","","");
+            Administrativo obj= new Administrativo("","","","","",0);
             //String cedula, String nombre, String telefono, String correo, String clave
             obj.setCedula(rs.getString("Cedula"));
             obj.setNombre(rs.getString("Nombre"));
@@ -256,7 +255,7 @@ public class AccesoDatos {
     
     private Matriculador toMatriculador(ResultSet rs){
         try {
-            Matriculador obj= new Matriculador("","","","","");
+            Matriculador obj= new Matriculador("","","","","",0);
             //String cedula, String nombre, String telefono, String correo, String clave
             obj.setCedula(rs.getString("Cedula"));
             obj.setNombre(rs.getString("Nombre"));
@@ -310,6 +309,8 @@ public class AccesoDatos {
             return null;
         }
     } 
+    
+    
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();
