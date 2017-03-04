@@ -131,6 +131,9 @@ public class vSAL extends JFrame {
        add2.addActionListener((ActionEvent e) -> {abrirVaddP();});
        add3.addActionListener((ActionEvent e) -> {abrirVaddC();});
        add4.addActionListener((ActionEvent e) -> {abrirVaddCu();});
+       add5.addActionListener((ActionEvent e) -> {abrirVaddG();});
+       add6.addActionListener((ActionEvent e) -> {abrirVaddM();});
+       add7.addActionListener((ActionEvent e) -> {abrirVaddAd();});
     }
     public void init(){
         setVisible(true);
@@ -155,6 +158,22 @@ public class vSAL extends JFrame {
         vaddCu.init();
         dispose();
     }
+    public void abrirVaddG(){
+        vaddG=new VentanaAddG("Nuevo Grupo",gestor);
+        vaddG.init();
+        dispose();
+        
+    }
+    public void abrirVaddAd(){
+        vaddAd=new VentanaAddAd("Nuevo Administrador",gestor);
+        vaddAd.init();
+        dispose();
+    }
+    public void abrirVaddM(){
+        vaddM=new VentanaAddM("Nuevo Matriculador",gestor);
+        vaddM.init();
+        dispose();
+    }
     
     Control gestor;
     
@@ -176,4 +195,7 @@ public class vSAL extends JFrame {
     private VentanaAddPr vaddP;
     private VentanaAddCar vaddC;
     private VentanaAddCur vaddCu;
+    private VentanaAddG vaddG;
+    private VentanaAddAd vaddAd;
+    private VentanaAddM vaddM;
 }
