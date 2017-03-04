@@ -23,26 +23,26 @@ public class AccesoDatos {
     //Insert
     
     public void addAlumno(Alumno a)throws Exception{
-        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s',0 ,'%s')";
-        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getFechaNacimiento());
+        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '%s')";
+        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo(), a.getFechaNacimiento());
         int rs = connect.executeUpdate(sql);       
     }
     
     public void addProfesor(Profesor a)throws Exception{
-        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s',1 ,'')";
-        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave());
+        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
+        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }
     
      public void addAdministrativo(Administrativo a)throws Exception{
-        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s',2 ,'')";
-        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave());
+        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
+        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }
      
      public void addMatriculador(Matriculador a)throws Exception{
-        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s',3 ,'')";
-        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave());
+        String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
+        sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }     
      
@@ -120,6 +120,7 @@ public class AccesoDatos {
             obj.setTelefono(rs.getString("Telefono"));
             obj.setCorreo(rs.getString("Correo"));
             obj.setClave(rs.getString("Clave"));
+            obj.setTipo(rs.getInt("Tipo"));
             obj.setFechaNacimiento(rs.getString("Fecha_Nacimiento"));
             return obj;
         } catch (SQLException ex) {
@@ -176,6 +177,7 @@ public class AccesoDatos {
             obj.setTelefono(rs.getString("Telefono"));
             obj.setCorreo(rs.getString("Correo"));
             obj.setClave(rs.getString("Clave"));
+            obj.setTipo(rs.getInt("Tipo"));
             return obj;
         } catch (SQLException ex) {
             return null;
@@ -218,6 +220,7 @@ public class AccesoDatos {
             obj.setTelefono(rs.getString("Telefono"));
             obj.setCorreo(rs.getString("Correo"));
             obj.setClave(rs.getString("Clave"));
+            obj.setTipo(rs.getInt("Tipo"));
             return obj;
         } catch (SQLException ex) {
             return null;
@@ -260,6 +263,7 @@ public class AccesoDatos {
             obj.setTelefono(rs.getString("Telefono"));
             obj.setCorreo(rs.getString("Correo"));
             obj.setClave(rs.getString("Clave"));
+            obj.setTipo(rs.getInt("Tipo"));
             return obj;
         } catch (SQLException ex) {
             return null;
@@ -275,12 +279,12 @@ public class AccesoDatos {
         if (rs.next()){
             return  toCurso(rs);
         }else{
-            throw new Exception("Matriculador no existe");
+            throw new Exception("Curso no existe");
         }
     }
     
     public List<Curso> cursoTotal()throws Exception{
-        String sql = "select * from persona where persona.tipo = 3";
+        String sql = "select * from curso";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
@@ -288,7 +292,7 @@ public class AccesoDatos {
             if(obj != null)
                 cur.add(obj);
             else
-                throw new Exception("No existen Matriculador");
+                throw new Exception("No existen Curso");
         }
         return cur;
     }   
