@@ -70,7 +70,7 @@ public class AccesoDatos {
     }
     
     //Select
-    
+    //Alumno
     public Alumno alumnoGet(String cedula) throws Exception{
         String sql = "select * from persona where persona.cedula = '%s'";
         sql = String.format(sql, cedula);
@@ -126,6 +126,149 @@ public class AccesoDatos {
         }
     }
     
+    //Profesor
+        public Profesor profesorGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s'";
+        sql = String.format(sql, cedula);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toProfesor(rs);
+        }else{
+            throw new Exception("Alumno no existe");
+        }
+    }
+    
+    public List<Profesor> profesorTotal()throws Exception{
+        String sql = "select * from persona where persona.tipo = 1";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Profesor obj = toProfesor(rs);
+            if(obj != null)
+                prof.add(obj);
+            else
+                throw new Exception("No existen Profesor");
+        }
+        return prof;
+    }
+    
+    public List<Profesor> profesorGrupo(Grupo grupo)throws Exception{
+        String sql = "select * from persona where matricula.grupo = '%d' and persona.tipo = 0";
+        sql = String.format(sql,grupo.getNumero());
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Profesor obj = toProfesor(rs);
+            if(obj != null)
+                prof.add(obj);
+            else
+                throw new Exception("No existen Profesor");
+        }
+        return prof;
+    }
+        
+    private Profesor toProfesor(ResultSet rs){
+        try {
+            Profesor obj= new Profesor("","","","","");
+            //String cedula, String nombre, String telefono, String correo, String clave
+            obj.setCedula(rs.getString("Cedula"));
+            obj.setNombre(rs.getString("Nombre"));
+            obj.setTelefono(rs.getString("Telefono"));
+            obj.setCorreo(rs.getString("Correo"));
+            obj.setClave(rs.getString("Clave"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
+    //Administrativo
+
+         public Administrativo administrativoGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s'";
+        sql = String.format(sql, cedula);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toAdministrativo(rs);
+        }else{
+            throw new Exception("Administrativo no existe");
+        }
+    }
+    
+    public List<Administrativo> administrativoTotal()throws Exception{
+        String sql = "select * from persona where persona.tipo = 2";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Administrativo obj = toAdministrativo(rs);
+            if(obj != null)
+                adm.add(obj);
+            else
+                throw new Exception("No existen Administrativo");
+        }
+        return adm;
+    }   
+    
+    private Administrativo toAdministrativo(ResultSet rs){
+        try {
+            Administrativo obj= new Administrativo("","","","","");
+            //String cedula, String nombre, String telefono, String correo, String clave
+            obj.setCedula(rs.getString("Cedula"));
+            obj.setNombre(rs.getString("Nombre"));
+            obj.setTelefono(rs.getString("Telefono"));
+            obj.setCorreo(rs.getString("Correo"));
+            obj.setClave(rs.getString("Clave"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }    
+    
+    //Administrativo
+
+         public Matriculador matriculadorGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s'";
+        sql = String.format(sql, cedula);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toMatriculador(rs);
+        }else{
+            throw new Exception("Matriculador no existe");
+        }
+    }
+    
+    public List<Matriculador> matriculadorTotal()throws Exception{
+        String sql = "select * from persona where persona.tipo = 3";
+        sql = String.format(sql);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Matriculador obj = toMatriculador(rs);
+            if(obj != null)
+                mat.add(obj);
+            else
+                throw new Exception("No existen Matriculador");
+        }
+        return mat;
+    }   
+    
+    private Matriculador toMatriculador(ResultSet rs){
+        try {
+            Matriculador obj= new Matriculador("","","","","");
+            //String cedula, String nombre, String telefono, String correo, String clave
+            obj.setCedula(rs.getString("Cedula"));
+            obj.setNombre(rs.getString("Nombre"));
+            obj.setTelefono(rs.getString("Telefono"));
+            obj.setCorreo(rs.getString("Correo"));
+            obj.setClave(rs.getString("Clave"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }    
+    
+    
     ArrayList<Alumno> alum = new ArrayList<>();
+    ArrayList<Profesor> prof = new ArrayList<>();
+    ArrayList<Administrativo> adm = new ArrayList<>();
+    ArrayList<Matriculador> mat = new ArrayList<>();
     private final Conector connect;
 }
