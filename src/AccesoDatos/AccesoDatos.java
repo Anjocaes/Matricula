@@ -370,6 +370,42 @@ public class AccesoDatos {
     }
     
     //Nota
+    public Nota unaNota(Alumno a, Curso c) throws Exception{
+        String sql = "select nota from matricula, grupo where matricula.CedAlumno = '%s' and grupo.curso = '%s'";
+        sql = String.format(sql, a.getCedula(), c.getCodigo());
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toNota(rs);
+        }else{
+            throw new Exception("Grupo no existe");
+        }
+    }
+    
+    public List<Nota> notasCurso(Curso c)throws Exception{
+        String sql = "select nota from matricula, grupo where grupo.curso = '%s'";
+        sql = String.format(sql, c.getCodigo());
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Nota obj = toNota(rs);
+            if(obj != null)
+                not.add(obj);
+            else
+                throw new Exception("No existen Grupo");
+        }
+        return not;
+    }
+    
+    private Nota toNota(ResultSet rs){
+        try {
+            Nota obj = new Nota("",0);
+            //int numero, String horario
+            obj.setCurso(rs.getString("Ciclo"));
+            obj.setNota(rs.getInt("Nota"));
+            return obj;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();
