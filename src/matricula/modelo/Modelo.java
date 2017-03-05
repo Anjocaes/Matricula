@@ -20,7 +20,7 @@ public class Modelo {
         try {
             ds.addAlumno(new Alumno(ced,nom,tel,cor,cla,f_n,1));
         } catch (Exception ex) {
-           
+            System.out.println("Control -> createAlumno");
         }
     }
     public void createProfesor(String ced, String nom, String tel, 
@@ -28,14 +28,31 @@ public class Modelo {
         try {
             ds.addProfesor(new Profesor(ced,nom,tel,cor,cla,2));
         } catch (Exception ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println("Control -> createProfesor");
         }
     }
     public void createCarrera(){
         
     }
-    public void createGrupo(){
-        
+    public void createCurso(String cod, String nom, int cre, int hS){
+        //ds.addCurso(new Curso(cod,nom,cre,hS), x);    falta el ciclo 
+    }
+    public void createGrupo(int n, String h){
+        //ds.addGrupo(new Grupo(n,h), x);   como meto el curso
+    }
+    public void createAdmin(String ced, String nom, String tel, String cor, String cla){
+        try {
+            ds.addAdministrativo(new Administrativo(ced,nom,tel,cor,cla,0));
+        } catch (Exception ex) {
+           System.out.println("Control -> createAdmin");
+        }
+    }
+    public void createMatri(String ced, String nom, String tel, String cor, String cla){
+        try {
+            ds.addMatriculador(new Matriculador(ced,nom,tel,cor,cla,3));
+        } catch (Exception ex) {
+            System.out.println("Control -> createMatri");
+        }
     }
     
     Universidad universidad;

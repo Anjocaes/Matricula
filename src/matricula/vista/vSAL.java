@@ -1,5 +1,12 @@
 package matricula.vista;
 
+import matricula.vista.Agregar.VentanaAddPr;
+import matricula.vista.Agregar.VentanaAddM;
+import matricula.vista.Agregar.VentanaAddG;
+import matricula.vista.Agregar.VentanaAddCur;
+import matricula.vista.Agregar.VentanaAddCar;
+import matricula.vista.Agregar.VentanaAddAl;
+import matricula.vista.Agregar.VentanaAddAd;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;

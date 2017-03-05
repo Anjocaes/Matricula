@@ -1,5 +1,9 @@
-
-package matricula.vista;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,10 +25,13 @@ import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import matricula.control.Control;
 
-
-public class VentanaAddG extends JFrame {
-    public VentanaAddG(String titulo, Control cont){
-        super(titulo);
+/**
+ *
+ * @author Marko
+ */
+public class VentanaAddCar extends JFrame {
+    public VentanaAddCar(String titulo, Control cont){
+       super(titulo);
         gestor = cont;
         ajustarComponentes(getContentPane());
         confiEventos();
@@ -43,7 +50,7 @@ public class VentanaAddG extends JFrame {
         JPanel gen = new JPanel(new BorderLayout() );
         gen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gen.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(13,159,238)), "Nuevo Grupo"));
+                BorderFactory.createLineBorder(new Color(13,159,238)), "Nueva Carrera"));
         principal.add(gen, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
         //------------------------------------------
@@ -53,17 +60,22 @@ public class VentanaAddG extends JFrame {
         gc.insets=new Insets(6,6,6,6);
         gc.gridx=0;
         gc.gridy=0;
-        inf.add(new JLabel("Numero: "),gc);
+        inf.add(new JLabel("Nombre: "),gc);
         gc.gridx=1;
         gc.gridy=0;
         inf.add(nom=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=1;
-        inf.add(new JLabel("Horario: "),gc);
+        inf.add(new JLabel("Titulo: "),gc);
         gc.gridx=1;
         gc.gridy=1;
         inf.add(tit=new JTextField(15),gc);
-              
+        gc.gridx=0;
+        gc.gridy=2;
+        inf.add(new JLabel("Codigo: "),gc);
+        gc.gridx=1;
+        gc.gridy=2;
+        inf.add(cod=new JTextField(15),gc);
                 
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -77,14 +89,16 @@ public class VentanaAddG extends JFrame {
         gen.add(btns,BorderLayout.PAGE_END);
         gen.add(inf,BorderLayout.CENTER);
     }
-     public void confiEventos(){
+    public void confiEventos(){
         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent ew){
                 cerrarApp();
             }
         });
-        btC.addActionListener((ActionEvent e)->{dispose();});
+        btC.addActionListener((ActionEvent e)->{
+            dispose();
+        });
     }
     public void init(){
         setVisible(true);
@@ -105,4 +119,5 @@ public class VentanaAddG extends JFrame {
     private JTextField cod;
     private JTextField nom;
     private JTextField tit;
+   
 }

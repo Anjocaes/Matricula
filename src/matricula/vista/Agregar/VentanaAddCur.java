@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matricula.vista;
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,9 +29,9 @@ import matricula.control.Control;
  *
  * @author Marko
  */
-public class VentanaAddCar extends JFrame {
-    public VentanaAddCar(String titulo, Control cont){
-       super(titulo);
+public class VentanaAddCur extends JFrame {
+    public VentanaAddCur(String titulo, Control cont){
+        super(titulo);
         gestor = cont;
         ajustarComponentes(getContentPane());
         confiEventos();
@@ -50,7 +50,7 @@ public class VentanaAddCar extends JFrame {
         JPanel gen = new JPanel(new BorderLayout() );
         gen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gen.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(13,159,238)), "Nueva Carrera"));
+                BorderFactory.createLineBorder(new Color(13,159,238)), "Nueva Curso"));
         principal.add(gen, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
         //------------------------------------------
@@ -66,16 +66,22 @@ public class VentanaAddCar extends JFrame {
         inf.add(nom=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=1;
-        inf.add(new JLabel("Titulo: "),gc);
-        gc.gridx=1;
-        gc.gridy=1;
-        inf.add(tit=new JTextField(15),gc);
-        gc.gridx=0;
-        gc.gridy=2;
         inf.add(new JLabel("Codigo: "),gc);
         gc.gridx=1;
-        gc.gridy=2;
+        gc.gridy=1;
         inf.add(cod=new JTextField(15),gc);
+        gc.gridx=0;
+        gc.gridy=2;
+        inf.add(new JLabel("Creditos: "),gc);
+        gc.gridx=1;
+        gc.gridy=2;
+        inf.add(cre=new JTextField(15),gc);
+        gc.gridx=0;
+        gc.gridy=3;
+        inf.add(new JLabel("Horas Semanales: "),gc);
+        gc.gridx=1;
+        gc.gridy=3;
+        inf.add(h_s=new JTextField(15),gc);
                 
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -109,15 +115,14 @@ public class VentanaAddCar extends JFrame {
             dispose();
         }
     }
-    
     Control gestor;
     GridBagConstraints gc;
-    
+    //-----------------------
     private JButton btA;
     private JButton btC;
-    //--------textField------------
+    //---------------------
     private JTextField cod;
     private JTextField nom;
-    private JTextField tit;
-   
+    private JTextField cre;
+    private JTextField h_s;
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matricula.vista;
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -116,9 +116,8 @@ public class VentanaAddPr extends JFrame {
                 cerrarApp();
             }
         });
-         btC.addActionListener((ActionEvent e) -> {
-             dispose();
-         });
+         btC.addActionListener((ActionEvent e) -> {dispose();});
+         btA.addActionListener((ActionEvent e) -> {addProfesro();});
     }
     public void init(){
         setVisible(true);
@@ -127,6 +126,19 @@ public class VentanaAddPr extends JFrame {
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
             dispose();
         }
+    }
+    
+    public void addProfesro(){
+        if (!(ced.getText().isEmpty()||nom.getText().isEmpty()||
+                tel.getText().isEmpty()||cor.getText().isEmpty()||clave.getText().isEmpty())) {
+            if (JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Profesor", "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                gestor.addProfesor(ced.getText(), nom.getText(), tel.getText(), cor.getText(), clave.getText());
+                dispose();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Los datos son incorrectos");
+        }
+        
     }
     
     

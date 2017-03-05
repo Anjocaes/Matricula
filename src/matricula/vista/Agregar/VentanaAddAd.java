@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matricula.vista;
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -121,7 +121,7 @@ public class VentanaAddAd extends JFrame {
     }
     public void addAdmin(){
         if(JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Administrador", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            
+            gestor.addAdmin(ced.getText(),nom.getText(),tel.getText(),cor.getText(),clave.getText());
              dispose();
         }
     }

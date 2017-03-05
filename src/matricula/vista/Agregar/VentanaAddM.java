@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package matricula.vista;
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,20 +29,21 @@ import matricula.control.Control;
  *
  * @author Marko
  */
-public class VentanaAddCur extends JFrame {
-    public VentanaAddCur(String titulo, Control cont){
+public class VentanaAddM extends JFrame {
+    public VentanaAddM(String titulo, Control gestor) {
         super(titulo);
-        gestor = cont;
+        this.gestor = gestor;
         ajustarComponentes(getContentPane());
         confiEventos();
        // pack();
-        setMinimumSize(new Dimension(450, 320));
+        setMinimumSize(new Dimension(300, 300));
         setLocationRelativeTo(null);
         setResizable(true);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
+    
     public void ajustarComponentes(Container c){
-        c.setLayout(new BorderLayout());
+       c.setLayout(new BorderLayout());
         JPanel principal=new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -50,7 +51,7 @@ public class VentanaAddCur extends JFrame {
         JPanel gen = new JPanel(new BorderLayout() );
         gen.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gen.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(13,159,238)), "Nueva Carrera"));
+                BorderFactory.createLineBorder(new Color(13,159,238)), "Nuevo Matriculador"));
         principal.add(gen, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
         //------------------------------------------
@@ -66,23 +67,29 @@ public class VentanaAddCur extends JFrame {
         inf.add(nom=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=1;
-        inf.add(new JLabel("Codigo: "),gc);
+        inf.add(new JLabel("Cedula: "),gc);
         gc.gridx=1;
         gc.gridy=1;
-        inf.add(cod=new JTextField(15),gc);
+        inf.add(ced=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=2;
-        inf.add(new JLabel("Creditos: "),gc);
+        inf.add(new JLabel("Telefono: "),gc);
         gc.gridx=1;
         gc.gridy=2;
-        inf.add(cre=new JTextField(15),gc);
+        inf.add(tel=new JTextField(15),gc);
         gc.gridx=0;
         gc.gridy=3;
-        inf.add(new JLabel("Horas Semanales: "),gc);
+        inf.add(new JLabel("Correo: "),gc);
         gc.gridx=1;
         gc.gridy=3;
-        inf.add(h_s=new JTextField(15),gc);
-                
+        inf.add(cor=new JTextField(15),gc);
+        gc.gridx=0;
+        gc.gridy=4;
+        inf.add(new JLabel("Clave: "),gc);
+        gc.gridx=1;
+        gc.gridy=4;
+        inf.add(clave=new JTextField(15),gc);
+        
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
         gc.insets=new Insets(4,4,4,4);
@@ -93,36 +100,45 @@ public class VentanaAddCur extends JFrame {
         gc.gridy=0;
         btns.add(btC=new JButton("Cancelar"),gc);
         gen.add(btns,BorderLayout.PAGE_END);
-        gen.add(inf,BorderLayout.CENTER);
+        gen.add(inf,BorderLayout.WEST);
+        
     }
     public void confiEventos(){
-        this.addWindowListener(new WindowAdapter(){
+         this.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent ew){
                 cerrarApp();
             }
         });
-        btC.addActionListener((ActionEvent e)->{
-            dispose();
-        });
+         btA.addActionListener((ActionEvent e) -> { addMatri(); });
+         btC.addActionListener((ActionEvent e) -> { dispose(); });
     }
     public void init(){
         setVisible(true);
     }
     public void cerrarApp(){
-        if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", 
-                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+        if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
             dispose();
         }
     }
-    Control gestor;
+    public void addMatri(){
+        if(JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Matriculador", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            gestor.addMatri(ced.getText(),nom.getText(),tel.getText(),cor.getText(),clave.getText());
+             dispose();
+        }
+    }
+    
+    //--------------
+    Control gestor; 
     GridBagConstraints gc;
-    //-----------------------
+    
     private JButton btA;
     private JButton btC;
-    //---------------------
-    private JTextField cod;
+    //--------textField------------
     private JTextField nom;
-    private JTextField cre;
-    private JTextField h_s;
+    private JTextField ced;
+    private JTextField tel;
+    private JTextField cor;
+    private JTextField clave;
+    private String car="ingenieria de sistemas";
 }
