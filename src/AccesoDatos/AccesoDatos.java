@@ -124,7 +124,7 @@ public class AccesoDatos {
     }
     
         public List<Alumno> alumnoGrupo(Grupo grupo)throws Exception{
-        String sql = "select * from persona where matricula.grupo = '%d' and persona.tipo = 0";
+        String sql = "select * from persona, matricula where matricula.grupo = '%d' and persona.tipo = 0";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
@@ -192,7 +192,7 @@ public class AccesoDatos {
     }
     
     public List<Profesor> profesorGrupo(Grupo grupo)throws Exception{
-        String sql = "select * from persona where matricula.grupo = '%d' and persona.tipo = 1";
+        String sql = "select * from persona, matricula where matricula.grupo = '%d' and persona.tipo = 1";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
@@ -220,7 +220,7 @@ public class AccesoDatos {
             return null;
         }
     }
-    
+ 
     //Administrativo
     public Administrativo administrativoGet(String cedula) throws Exception{
         String sql = "select * from persona where persona.cedula = '%s' and persona.tipo = 2";
@@ -406,6 +406,21 @@ public class AccesoDatos {
         }
         return gru;
     } 
+    //Profe ver los cursos que tiene
+    
+    public List<Grupo> profesorCurso(Profesor a)throws Exception{
+        String sql = "select * from grupo, matricula where matricula.CedProfesor = '%s'";
+        sql = String.format(sql, a.getCedula());
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Grupo obj = toGrupo(rs);
+            if(obj != null)
+                gru.add(obj);
+            else
+                throw new Exception("No existen Grupo");
+        }
+        return gru;
+    }
     
     private Grupo toGrupo(ResultSet rs){
         try {
