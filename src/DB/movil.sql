@@ -6,7 +6,7 @@ CREATE database `moviles` ;
   `Titulo` VARCHAR(255) NOT NULL,
   `Curso` INT NOT NULL,
   PRIMARY KEY (`Codigo`),
-  CONSTRAINT `fk_curso` FOREIGN KEY (Curso) REFERENCES `moviles`.`curso`(Codigo));
+  CONSTRAINT `fk_curso` FOREIGN KEY (Curso) REFERENCES `moviles`.`curso`(Codigo) ON DELETE CASCADE);
   
   CREATE TABLE `moviles`.`curso` (
   `Codigo` VARCHAR(12) NOT NULL,
@@ -21,7 +21,7 @@ CREATE database `moviles` ;
   `Horario` VARCHAR(255) NOT NULL,
   `Curso` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`Numero`),
-  CONSTRAINT `fk_curso` FOREIGN KEY (Curso) REFERENCES `moviles`.`curso`(Codigo));
+  CONSTRAINT `fk_curso` FOREIGN KEY (Curso) REFERENCES `moviles`.`curso`(Codigo) ON DELETE CASCADE);
   
 CREATE TABLE `moviles`.`matricula` (
   `CedProfesor` VARCHAR(12) NOT NULL,
@@ -29,10 +29,9 @@ CREATE TABLE `moviles`.`matricula` (
   `Grupo` INT NOT NULL,
   `Nota` INT,
   PRIMARY KEY (`Grupo`, `CedAlumno`, `CedProfesor`, `Nota`),
-  CONSTRAINT `fk_profesor` FOREIGN KEY (CedProfesor) REFERENCES `moviles`.`persona`(cedula),
-  CONSTRAINT `fk_alumno` FOREIGN KEY (CedAlumno) REFERENCES `moviles`.`persona`(cedula),
-  CONSTRAINT `fk_grupo` FOREIGN KEY (Grupo) REFERENCES `moviles`.`grupo`(Codigo));
-  
+  CONSTRAINT `fk_profesor` FOREIGN KEY (CedProfesor) REFERENCES `moviles`.`persona`(cedula) ON DELETE CASCADE,
+  CONSTRAINT `fk_alumno` FOREIGN KEY (CedAlumno) REFERENCES `moviles`.`persona`(cedula) ON DELETE CASCADE,
+  CONSTRAINT `fk_grupo` FOREIGN KEY (Grupo) REFERENCES `moviles`.`grupo`(Codigo) ON DELETE CASCADE);
   
 CREATE TABLE `moviles`.`persona` (
   `Cedula` VARCHAR(12) NOT NULL,
@@ -42,4 +41,4 @@ CREATE TABLE `moviles`.`persona` (
   `Clave` VARCHAR(8) NOT NULL ,
   `Tipo` INT NOT NULL ,
   `Fecha_Nacimiento` VARCHAR(15),
-  PRIMARY KEY (`Cedula`)); 
+  PRIMARY KEY (`Cedula`));  

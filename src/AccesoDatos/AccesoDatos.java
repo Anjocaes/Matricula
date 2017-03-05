@@ -20,55 +20,64 @@ public class AccesoDatos {
     }
     
     //Insert
-    
+  
+    //Alumno
     public void addAlumno(Alumno a)throws Exception{
         String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '%s')";
         sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo(), a.getFechaNacimiento());
         int rs = connect.executeUpdate(sql);       
     }
     
+    //Profesor
     public void addProfesor(Profesor a)throws Exception{
         String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
         sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }
     
+    //Administrativo
      public void addAdministrativo(Administrativo a)throws Exception{
         String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
         sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }
      
+    //Matriculador 
      public void addMatriculador(Matriculador a)throws Exception{
         String sql = "insert into persona(Cedula, Nombre, Telefono, Correo, Clave, Tipo, Fecha_Nacimiento)values ('%s','%s','%s','%s','%s', '%d', '')";
         sql=String.format(sql, a.getCedula(), a.getNombre(), a.getTelefono(), a.getCorreo(), a.getClave(), a.getTipo());
         int rs = connect.executeUpdate(sql);       
     }     
      
+    //Curso 
      public void addCurso(Curso a, Ciclo x)throws Exception{
         String sql = "insert into curso(Codigo, Nombre, Credito, HSemanal, Ciclo)values ('%s','%s','%d','%d','%s')";
         sql=String.format(sql, a.getCodigo(), a.getNombre(), a.getCredito(), a.getHoraSemanal(), x.getCiclo());
         int rs = connect.executeUpdate(sql);       
     }      
      
+    //Grupo 
      public void addGrupo(Grupo a, Curso x)throws Exception{
         String sql = "insert into curso(Numero, Horario, Curso)values ('%d','%s','%s')";
         sql=String.format(sql, a.getNumero(), a.getHorario(), x.getCodigo());
         int rs = connect.executeUpdate(sql);       
     }
-     
+    
+     //Matricula
      public void matricular(Grupo x, Alumno a)throws Exception{
         String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('','%s','%d','%s')";
         sql=String.format(sql, a.getCedula(), x.getNumero(), "");
         int rs = connect.executeUpdate(sql);       
     }
-
-    public void ponerProfesor(Profesor p, Grupo g)throws Exception{
-        String sql = "update matricula set CedProfesor = '%s' where matricula.Grupo = '%d'";
-        sql=String.format(sql, p.getCedula(), g.getNumero());
+     
+    //Pone el profesor
+    public void ponerProfesor(Profesor p, Grupo g, Curso c)throws Exception{
+        String sql = "update matricula set CedProfesor = '%s' where matricula.Grupo = '%d' and grupo.curso = '%s'";
+        sql=String.format(sql, p.getCedula(), g.getNumero(), c.getCodigo());
         int rs = connect.executeUpdate(sql);       
     }
      
+    //Pone la nota
     public void ponerNota(Grupo x, Alumno a, int n)throws Exception{
         String sql = "update matricula set nota = '%d' WHERE matricula.cedalumno = '%s' and matricula.grupo = '%d'";
         sql=String.format(sql, n, a.getCedula(), x.getNumero());
@@ -76,10 +85,22 @@ public class AccesoDatos {
     }
     
     //Select
+    
     //Alumno
     public Alumno alumnoGet(String cedula) throws Exception{
-        String sql = "select * from persona where persona.cedula = '%s'";
+        String sql = "select * from persona where persona.cedula = '%s' and persona.tipo = 0";
         sql = String.format(sql, cedula);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toAlumno(rs);
+        }else{
+            throw new Exception("Alumno no existe");
+        }
+    }
+    
+    public Alumno alumnoGetNombre(String nombre) throws Exception{
+        String sql = "select * from persona where persona.nombre = '%s' and persona.tipo = 0";
+        sql = String.format(sql, nombre);
         ResultSet rs =  connect.executeQuery(sql);
         if (rs.next()){
             return  toAlumno(rs);
@@ -134,9 +155,20 @@ public class AccesoDatos {
     }
     
     //Profesor
-        public Profesor profesorGet(String cedula) throws Exception{
-        String sql = "select * from persona where persona.cedula = '%s'";
+    public Profesor profesorGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s' and persona.tipo = 1";
         sql = String.format(sql, cedula);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toProfesor(rs);
+        }else{
+            throw new Exception("Alumno no existe");
+        }
+    }
+
+    public Profesor profesorGetNombre(String nombre) throws Exception{
+        String sql = "select * from persona where persona.nombre = '%s' and persona.tipo = 1";
+        sql = String.format(sql, nombre);
         ResultSet rs =  connect.executeQuery(sql);
         if (rs.next()){
             return  toProfesor(rs);
@@ -160,7 +192,7 @@ public class AccesoDatos {
     }
     
     public List<Profesor> profesorGrupo(Grupo grupo)throws Exception{
-        String sql = "select * from persona where matricula.grupo = '%d' and persona.tipo = 0";
+        String sql = "select * from persona where matricula.grupo = '%d' and persona.tipo = 1";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
@@ -190,9 +222,8 @@ public class AccesoDatos {
     }
     
     //Administrativo
-
-         public Administrativo administrativoGet(String cedula) throws Exception{
-        String sql = "select * from persona where persona.cedula = '%s'";
+    public Administrativo administrativoGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s' and persona.tipo = 2";
         sql = String.format(sql, cedula);
         ResultSet rs =  connect.executeQuery(sql);
         if (rs.next()){
@@ -201,6 +232,17 @@ public class AccesoDatos {
             throw new Exception("Administrativo no existe");
         }
     }
+    
+    public Administrativo administrativoGetNombre(String nombre) throws Exception{
+        String sql = "select * from persona where persona.nombre = '%s' and persona.tipo = 2";
+        sql = String.format(sql, nombre);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toAdministrativo(rs);
+        }else{
+            throw new Exception("Administrativo no existe");
+        }
+    }    
     
     public List<Administrativo> administrativoTotal()throws Exception{
         String sql = "select * from persona where persona.tipo = 2";
@@ -233,9 +275,8 @@ public class AccesoDatos {
     }    
     
     //Matriculador
-
-         public Matriculador matriculadorGet(String cedula) throws Exception{
-        String sql = "select * from persona where persona.cedula = '%s'";
+    public Matriculador matriculadorGet(String cedula) throws Exception{
+        String sql = "select * from persona where persona.cedula = '%s' and persona.tipo = 3";
         sql = String.format(sql, cedula);
         ResultSet rs =  connect.executeQuery(sql);
         if (rs.next()){
@@ -244,6 +285,17 @@ public class AccesoDatos {
             throw new Exception("Matriculador no existe");
         }
     }
+    
+    public Matriculador matriculadorGetNombre(String nombre) throws Exception{
+        String sql = "select * from persona where persona.nombre = '%s' and persona.tipo = 3";
+        sql = String.format(sql, nombre);
+        ResultSet rs =  connect.executeQuery(sql);
+        if (rs.next()){
+            return  toMatriculador(rs);
+        }else{
+            throw new Exception("Matriculador no existe");
+        }
+    }    
     
     public List<Matriculador> matriculadorTotal()throws Exception{
         String sql = "select * from persona where persona.tipo = 3";
@@ -276,7 +328,6 @@ public class AccesoDatos {
     }    
     
     //Curso
-    
     public Curso cursoGet(int codigo) throws Exception{
         String sql = "select * from curso where curso.codigo = '%s'";
         sql = String.format(sql, codigo);
@@ -316,8 +367,7 @@ public class AccesoDatos {
         }
     } 
     
-    //Grupo
-    
+    //Grupo   
     public Grupo grupoGet(int numero) throws Exception{
         String sql = "select * from grupo where grupo.numero = '%d'";
         sql = String.format(sql, numero);
@@ -406,6 +456,95 @@ public class AccesoDatos {
             return null;
         }
     }
+    
+    //Eliminar
+    
+    //Alumno
+    void eliminarAlumno(Alumno a)throws Exception{
+        String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 0";
+        sql=String.format(sql, a.getCedula(), a.getTipo());
+        int rs = connect.executeUpdate(sql);          
+    }
+    
+    //Profesor
+    void eliminarProfesor(Profesor a)throws Exception{
+        String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, a.getCedula(), a.getTipo());
+        int rs = connect.executeUpdate(sql);          
+    }
+   
+    //Administrativo
+    void eliminarAdministrativo(Administrativo a)throws Exception{
+        String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, a.getCedula(), a.getTipo());
+        int rs = connect.executeUpdate(sql);          
+    }    
+
+    //Matriculador
+    void eliminarMatriculador(Matriculador a)throws Exception{
+        String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, a.getCedula(), a.getTipo());
+        int rs = connect.executeUpdate(sql);          
+    }
+
+    //Curso
+    void eliminarCurso(Curso a)throws Exception{
+        String sql = "delete from curso where curso.codigo = '%s'";
+        sql=String.format(sql, a.getCodigo());
+        int rs = connect.executeUpdate(sql);          
+    }  
+   
+    //Grupo
+    void eliminarGrupo(Grupo a)throws Exception{
+        String sql = "delete from grupo where grupo.codigo = '%d'";
+        sql=String.format(sql, a.getNumero());
+        int rs = connect.executeUpdate(sql);          
+    }      
+
+    //Update
+    
+    //Alumno
+    public void actualizarAlumno(Alumno a, String qCambia, String cambio)throws Exception{
+        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 0";
+        sql=String.format(sql, qCambia, cambio);
+        int rs = connect.executeUpdate(sql);       
+    }
+
+    //Profesor
+    public void actualizarProfesor(Profesor a, String qCambia, String cambio)throws Exception{
+        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio);
+        int rs = connect.executeUpdate(sql);       
+    }
+
+    //Administrativo
+    public void actualizarAdministrativo(Administrativo a, String qCambia, String cambio)throws Exception{
+        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio);
+        int rs = connect.executeUpdate(sql);       
+    }   
+    
+    //Matriculador
+    public void actualizarMatriculador(Matriculador a, String qCambia, String cambio)throws Exception{
+        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio);
+        int rs = connect.executeUpdate(sql);       
+    }
+    
+    //Curso
+    public void actualizarCurso(Curso a, String qCambia, String cambio)throws Exception{
+        String sql = "update curso set '%s' = '%s' where curso.codigo = '%s'";
+        sql=String.format(sql, qCambia, cambio, a.getCodigo());
+        int rs = connect.executeUpdate(sql);       
+    } 
+    
+    //Grupo
+    public void actualizarGrupo(Grupo a, String qCambia, String cambio, Curso c)throws Exception{
+        String sql = "update grupo set '%s' = '%s' where grupo.numero = '%d' and grupo.curso = '%s'";
+        sql=String.format(sql, qCambia, cambio, a.getNumero(), c.getCodigo());
+        int rs = connect.executeUpdate(sql);       
+    }    
+    
     
     ArrayList<Alumno> alum = new ArrayList<>();
     ArrayList<Profesor> prof = new ArrayList<>();
