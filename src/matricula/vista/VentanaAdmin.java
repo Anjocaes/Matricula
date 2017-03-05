@@ -109,6 +109,8 @@ public class VentanaAdmin extends JFrame {
     }
     public void abrirMod(){
         vMod=new VentanaModAl("Ventana Modificacion",gestor);
+        vMod.init();
+        dispose();
     }
     public void abrirElim(){
         vElim=new VentanaElim("Eliminaciones",gestor);

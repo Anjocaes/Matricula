@@ -106,6 +106,8 @@ public class VentanaElim extends JFrame {
     }
      public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            vAd=new VentanaAdmin("Administrador",gestor);
+            vAd.init();
             dispose();
         }
     }
@@ -119,4 +121,5 @@ public class VentanaElim extends JFrame {
     private JTextField id;
     
     GridBagConstraints gc;
+    private VentanaAdmin vAd;
 }

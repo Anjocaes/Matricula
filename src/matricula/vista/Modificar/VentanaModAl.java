@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import matricula.control.Control;
+import matricula.vista.VentanaAdmin;
 
 public class VentanaModAl extends JFrame {
     public VentanaModAl(String titulo, Control cont){
@@ -28,7 +29,7 @@ public class VentanaModAl extends JFrame {
         ajustarComponentes(getContentPane());
         confiEventos();
        // pack();
-        setMinimumSize(new Dimension(400, 350));
+        setMinimumSize(new Dimension(400, 400));
         setLocationRelativeTo(null);
         setResizable(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -292,7 +293,7 @@ public class VentanaModAl extends JFrame {
             }
         });
       //btA.addActionListener((ActionEvent e) -> { addAdmin(); });
-        btC.addActionListener((ActionEvent e) -> { dispose(); });
+        btC.addActionListener((ActionEvent e) -> { cerrarApp(); });
         btB.addActionListener((ActionEvent e) -> {
             
         });
@@ -306,6 +307,8 @@ public class VentanaModAl extends JFrame {
     }
     public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            vad=new VentanaAdmin("Administrador",gestor);
+            vad.init();
             dispose();
         }
     }
@@ -318,7 +321,7 @@ public class VentanaModAl extends JFrame {
            Matri.setVisible(false);
            Gru.setVisible(false);
            Cur.setVisible(false);
-           gen.add(Pro,BorderLayout.WEST);           
+           gen.add(Pro,BorderLayout.CENTER);           
        }
        if(vari.equals(" Alumno")){
            Pro.setVisible(false);
@@ -327,7 +330,7 @@ public class VentanaModAl extends JFrame {
            Matri.setVisible(false);
            Gru.setVisible(false);
            Cur.setVisible(false);
-           gen.add(Alu,BorderLayout.WEST);
+           gen.add(Alu,BorderLayout.CENTER);
        }
        if(vari.equals(" Administrador")){
            Pro.setVisible(false);
@@ -336,7 +339,7 @@ public class VentanaModAl extends JFrame {
            Matri.setVisible(false);
            Gru.setVisible(false);
            Cur.setVisible(false);
-           gen.add(Ad,BorderLayout.WEST);
+           gen.add(Ad,BorderLayout.CENTER);
        }
        if(vari.equals(" Matriculador")){
            Pro.setVisible(false);
@@ -345,7 +348,7 @@ public class VentanaModAl extends JFrame {
            Ad.setVisible(false);
             Gru.setVisible(true);
             Cur.setVisible(false);
-           gen.add(Matri,BorderLayout.WEST);
+           gen.add(Matri,BorderLayout.CENTER);
        }
         if(vari.equals(" Grupo")){
            Pro.setVisible(false);
@@ -354,7 +357,7 @@ public class VentanaModAl extends JFrame {
            Ad.setVisible(false);
            Gru.setVisible(true);
            Cur.setVisible(false);
-           gen.add(Gru,BorderLayout.WEST);
+           gen.add(Gru,BorderLayout.CENTER);
        }
         if(vari.equals(" Curso")){
            Pro.setVisible(false);
@@ -363,7 +366,7 @@ public class VentanaModAl extends JFrame {
            Ad.setVisible(false);
            Gru.setVisible(false);
            Cur.setVisible(true);
-           gen.add(Cur,BorderLayout.WEST);
+           gen.add(Cur,BorderLayout.CENTER);
        }
     }
     public void obt(){
@@ -398,4 +401,6 @@ public class VentanaModAl extends JFrame {
     JPanel Gru = new JPanel(new GridBagLayout());
     JPanel Cur = new JPanel(new GridBagLayout());
     private JComboBox cbm1;
+    
+    private VentanaAdmin vad;
 }
