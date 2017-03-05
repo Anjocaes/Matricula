@@ -20,6 +20,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import matricula.control.Control;
+import matricula.vista.Modificar.VentanaModAl;
 
 public class VentanaAdmin extends JFrame {
     public VentanaAdmin(String titulo, Control cont){
@@ -83,18 +84,14 @@ public class VentanaAdmin extends JFrame {
                 cerrarApp();
             }
         });
-       btD.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               abrirV();
-           }
+       btD.addActionListener((ActionEvent e) -> {
+           abrirV();
        });
-       btA.addActionListener(new ActionListener(){
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               abrirVSA();
-           }
+       btA.addActionListener((ActionEvent e) -> {
+           abrirVSA();
        });
+       btP.addActionListener((ActionEvent e) -> {abrirMod();});
+       btE.addActionListener((ActionEvent e) -> {abrirElim();});
     }
     public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
@@ -110,6 +107,14 @@ public class VentanaAdmin extends JFrame {
         vsal = new vSAL("Seleccion",gestor);
         vsal.init();
     }
+    public void abrirMod(){
+        vMod=new VentanaModAl("Ventana Modificacion",gestor);
+    }
+    public void abrirElim(){
+        vElim=new VentanaElim("Eliminaciones",gestor);
+        vElim.init();
+        dispose();
+    }
      
     
     Control gestor;
@@ -117,11 +122,13 @@ public class VentanaAdmin extends JFrame {
     //-----Botones-----
     private JButton btD;
     private JButton btP;
-    private JButton btA;
-    private JButton btE;
-    private JButton btG;
+    private JButton btA; //
+    private JButton btE; //ELIMINAR
+    private JButton btG; //GRUPO
     
     //-----Ventanas------
     private Vista v;
     private vSAL vsal;
+    private VentanaElim vElim;
+    private VentanaModAl vMod;
 }

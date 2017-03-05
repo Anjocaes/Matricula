@@ -65,7 +65,13 @@ public class VentanaModAl extends JFrame {
                cbm1.setEditable(false);
         gc.gridx=0;
         gc.gridy=1;
-        sal.add(btB=new JButton("Buscar"));
+        sal.add(new JLabel("ID: "),gc);
+        gc.gridx=1;
+        gc.gridy=1;
+        sal.add(id=new JTextField(10),gc);
+        gc.gridx=2;
+        gc.gridy=1;
+        sal.add(btB=new JButton("Buscar"),gc);
         c.add(sal,BorderLayout.NORTH);
 //-------------Profesor-----------------------------
             Pro.setLayout(new GridBagLayout());
@@ -260,7 +266,7 @@ public class VentanaModAl extends JFrame {
             gc.gridy=3;
             Cur.add(h_s=new JTextField(15),gc);
 //------------------Grupo---------------------------
-             Gru.setVisible(false);
+            Gru.setVisible(false);
             gc=new GridBagConstraints();
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
@@ -287,7 +293,12 @@ public class VentanaModAl extends JFrame {
         });
       //btA.addActionListener((ActionEvent e) -> { addAdmin(); });
         btC.addActionListener((ActionEvent e) -> { dispose(); });
-        btB.addActionListener((ActionEvent e) -> {ajusPaneles();});
+        btB.addActionListener((ActionEvent e) -> {
+            
+        });
+        cbm1.addActionListener((ActionEvent e) -> {
+            ajusPaneles();
+        });
         
     }
     public void init(){
@@ -305,8 +316,8 @@ public class VentanaModAl extends JFrame {
            Alu.setVisible(false);
            Ad.setVisible(false);
            Matri.setVisible(false);
-            Gru.setVisible(false);
-            Cur.setVisible(false);
+           Gru.setVisible(false);
+           Cur.setVisible(false);
            gen.add(Pro,BorderLayout.WEST);           
        }
        if(vari.equals(" Alumno")){
@@ -355,6 +366,10 @@ public class VentanaModAl extends JFrame {
            gen.add(Cur,BorderLayout.WEST);
        }
     }
+    public void obt(){
+        
+    }
+    
     
     Control gestor;
     GridBagConstraints gc;
@@ -373,6 +388,7 @@ public class VentanaModAl extends JFrame {
     private JTextField cod;
     private JTextField cre;
     private JTextField h_s;
+    private JTextField id;
     //------------------------------
     JPanel gen=new JPanel();
     JPanel Pro=new JPanel();

@@ -91,10 +91,12 @@ public class Vista extends JFrame {
     public void selecUsser(){
 //       vm=new VentanaMatri("Matriculador",gestor);
 //       vm.init();
-        //vad= new VentanaAdmin("Administracion",gestor);
-        //vad.init();
-        mod=new VentanaModAl("Modificar",gestor);
-        mod.init();
+        vad= new VentanaAdmin("Administracion",gestor);
+        vad.init();
+        //mod=new VentanaModAl("Modificar",gestor);
+        //mod.init();
+        //vel = new VentanaElim("Eliminacion",gestor);
+        //vel.init();
         this.dispose();
     }
     
@@ -109,4 +111,5 @@ public class Vista extends JFrame {
     private VentanaMatri vm;
     private VentanaAdmin vad;
     private VentanaModAl mod;
+    private VentanaElim vel;
 }
