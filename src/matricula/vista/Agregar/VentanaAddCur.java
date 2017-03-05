@@ -56,7 +56,6 @@ public class VentanaAddCur extends JFrame {
         //------------------------------------------
         JPanel inf = new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
-        gc=new GridBagConstraints();
         gc.insets=new Insets(6,6,6,6);
         gc.gridx=0;
         gc.gridy=0;

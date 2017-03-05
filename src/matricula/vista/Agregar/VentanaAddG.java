@@ -63,8 +63,7 @@ public class VentanaAddG extends JFrame {
         gc.gridx=1;
         gc.gridy=1;
         inf.add(tit=new JTextField(15),gc);
-              
-                
+                     
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
         gc.insets=new Insets(4,4,4,4);
@@ -94,6 +93,11 @@ public class VentanaAddG extends JFrame {
                 JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
             dispose();
         }
+    }
+    public void vali(){
+//        if(){
+//            
+//        }
     }
     
     Control gestor;

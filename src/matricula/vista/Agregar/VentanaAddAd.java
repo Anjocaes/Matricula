@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
@@ -120,13 +115,23 @@ public class VentanaAddAd extends JFrame {
         }
     }
     public void addAdmin(){
-        if(JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Administrador", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            gestor.addAdmin(ced.getText(),nom.getText(),tel.getText(),cor.getText(),clave.getText());
-             dispose();
+        if(vali()){
+            if(JOptionPane.showConfirmDialog(this, "Desea Agregar al nuevo Administrador", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                gestor.addAdmin(ced.getText(),nom.getText(),tel.getText(),cor.getText(),clave.getText());
+                 dispose();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Los datos son incorrectos");
         }
     }
+    public boolean vali(){
+        if(ced.getText().isEmpty()||nom.getText().isEmpty()||tel.getText().isEmpty()||cor.getText().isEmpty()||clave.getText().isEmpty()){
+            return false;
+        }
+        return true;
+    }
     
-    //--------------
+    //------------------------------------------------------------------------
     Control gestor; 
     GridBagConstraints gc;
     

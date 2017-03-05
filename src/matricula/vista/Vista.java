@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import matricula.control.Control;
+import matricula.vista.Modificar.VentanaModAl;
 
 public class Vista extends JFrame {
     public Vista(String titulo, Control cont){
@@ -31,8 +32,7 @@ public class Vista extends JFrame {
         setMinimumSize(new Dimension(280, 200));
         setLocationRelativeTo(null);
         setResizable(true);
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); 
     }
     
     public void ajustarComponentes(Container c){
@@ -91,8 +91,10 @@ public class Vista extends JFrame {
     public void selecUsser(){
 //       vm=new VentanaMatri("Matriculador",gestor);
 //       vm.init();
-        vad= new VentanaAdmin("Administracion",gestor);
-        vad.init();
+        //vad= new VentanaAdmin("Administracion",gestor);
+        //vad.init();
+        mod=new VentanaModAl("Modificar",gestor);
+        mod.init();
         this.dispose();
     }
     
@@ -106,4 +108,5 @@ public class Vista extends JFrame {
     //----Ventanas
     private VentanaMatri vm;
     private VentanaAdmin vad;
+    private VentanaModAl mod;
 }
