@@ -291,7 +291,13 @@ public class VentanaModAl extends JFrame {
             Gru.add(new JLabel("Horario: "),gc);
             gc.gridx=1;
             gc.gridy=1;
-            Gru.add(tit=new JTextField(15),gc);
+            Gru.add(hor= new JTextField(15),gc);
+            gc.gridx=0;
+            gc.gridy=2;
+            Gru.add(new JLabel("Curso: "),gc);
+            gc.gridx=1;
+            gc.gridy=2;
+            Gru.add(cur=new JTextField(15),gc);
             
     }
     public void confiEventos(){
@@ -428,6 +434,15 @@ public class VentanaModAl extends JFrame {
                     ci.setText(gestor.busCu(id.getText()).getCiclo().getNumero());   
                 }
             }
+            if(vari.equals(" Grupo")){
+                Curso cu=gestor.busCu(id.getText());
+                if(! gestor.busGru(Integer.parseInt(id.getText())).equals(null)){
+                    num.setText(""+gestor.busGru(Integer.parseInt(id.getText())).getNumero());
+                    hor.setText(gestor.busGru(Integer.parseInt(id.getText())).getHorario());
+                    cur.setText(gestor.busGru(Integer.parseInt(id.getText())).getCu().getNombre());
+                    
+                }
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Los campos para la busqueda son incorrectos");
         }
@@ -468,6 +483,11 @@ public class VentanaModAl extends JFrame {
                     gestor.updateCu(gestor.busCu(id.getText()),"nombre", nom.getText());
                     gestor.updateCu(gestor.busCu(id.getText()),"credito", cre.getText());
                     gestor.updateCu(gestor.busCu(id.getText()),"hsemanal", h_s.getText());
+                    confirm();
+                }
+                if(vari.equals(" Grupo")){
+                    gestor.updateGru(gestor.busGru(Integer.parseInt(id.getText())),"numero", num.getText(), gestor.busCu(cur.getText()));
+                    gestor.updateGru(gestor.busGru(Integer.parseInt(id.getText())),"horario", hor.getText(), gestor.busCu(cur.getText()));
                     confirm();
                 }
             }
@@ -513,12 +533,13 @@ public class VentanaModAl extends JFrame {
     private JTextField clave4;
     private JTextField num;
     private JTextField f_nac;
-    private JTextField tit;
+    private JTextField hor;
     private JTextField cod;
     private JTextField cre;
     private JTextField h_s;
     private JTextField id;
     private JTextField ci;
+    private JTextField cur;
     //------------------------------
     JPanel gen=new JPanel();
     JPanel Pro=new JPanel();

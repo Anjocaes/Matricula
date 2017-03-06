@@ -101,7 +101,7 @@ public class Modelo {
         try {
             return ds.matriculadorGet(ced);
         } catch (Exception ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Modelo -> busMatriculas");
         }
         return null;
     }
@@ -110,6 +110,14 @@ public class Modelo {
             return ds.cursoGet(c);
         } catch (Exception ex) {
             System.out.println("Modelo -> busCu");
+        }
+        return null;
+    }
+    public Grupo busGru(int n){
+        try {
+            return ds.grupoGet(n);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> busGru");
         }
         return null;
     }
@@ -148,6 +156,13 @@ public class Modelo {
             ds.actualizarCurso(a, qCambia, cambio);
         } catch (Exception ex) {
             System.out.println("Modelo -> updateCurso");
+        }
+    }
+    public void updateGru(Grupo g, String qCambia, String cambio, Curso c){
+        try {
+            ds.actualizarGrupo(g, qCambia, cambio, c);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> updateGrupo");
         }
     }
     

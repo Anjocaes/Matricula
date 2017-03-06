@@ -8,6 +8,11 @@ public class Grupo {
     public Grupo(int numero, String horario) {
         this.numero = numero;
         this.horario = horario;
+        cu=null;
+    }
+
+    public Curso getCu() {
+        return cu;
     }
 
     public int getNumero() {
@@ -49,9 +54,14 @@ public class Grupo {
     public void setProfesor(Profesor profesor) {
         this.profesor = profesor;
     }
+
+    public void setCu(Curso cu) {
+        this.cu = cu;
+    }
     
     int numero;
     String horario;
+    Curso cu;
     Profesor profesor;
     ArrayList<Alumno> alumnos;
     Alumno alumno;

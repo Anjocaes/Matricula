@@ -89,6 +89,11 @@ public class Vista extends JFrame {
         }
     }
     public void selecUsser(){
+        String usser=usu.getText();
+        String pass=cla.getText();
+        if(null != gestor.busqCAl(usser)){
+         
+        }
 //       vm=new VentanaMatri("Matriculador",gestor);
 //       vm.init();
         vad= new VentanaAdmin("Administracion",gestor);

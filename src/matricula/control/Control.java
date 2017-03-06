@@ -3,6 +3,7 @@ package matricula.control;
 import matricula.modelo.Administrativo;
 import matricula.modelo.Alumno;
 import matricula.modelo.Curso;
+import matricula.modelo.Grupo;
 import matricula.modelo.Matriculador;
 import matricula.modelo.Modelo;
 import matricula.modelo.Profesor;
@@ -45,6 +46,9 @@ public class Control {
    public Curso busCu(String cod){
        return datos.busCu(cod);
    }
+   public Grupo busGru(int n){
+       return datos.busGru(n);
+   }
    //----------------Update--------------------------------------------
    public void updateAl(Alumno a, String cambio, String original){
        datos.updateAl(a, cambio, original);
@@ -60,6 +64,9 @@ public class Control {
    }
    public void updateCu(Curso c, String qCambia, String cambio){
        datos.updateCu(c, qCambia, cambio);
+   }
+   public void updateGru(Grupo g, String qCambia, String cambio, Curso c){
+       datos.updateGru(g, qCambia, cambio, c);
    }
    
     Modelo datos;
