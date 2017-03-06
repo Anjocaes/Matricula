@@ -63,6 +63,12 @@ public class VentanaAddG extends JFrame {
         gc.gridx=1;
         gc.gridy=1;
         inf.add(tit=new JTextField(15),gc);
+        gc.gridx=0;
+        gc.gridy=2;
+        inf.add(new JLabel("Curso: "),gc);
+        gc.gridx=1;
+        gc.gridy=2;
+        inf.add(cod=new JTextField(15),gc);
                      
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -83,6 +89,7 @@ public class VentanaAddG extends JFrame {
                 cerrarApp();
             }
         });
+        btA.addActionListener((ActionEvent e) -> {addG();});
         btC.addActionListener((ActionEvent e)->{dispose();});
     }
     public void init(){
@@ -94,10 +101,16 @@ public class VentanaAddG extends JFrame {
             dispose();
         }
     }
-    public void vali(){
+    public boolean vali(){
 //        if(){
 //            
 //        }
+        return true;
+    }
+    public void addG(){
+        if(vali()){
+            gestor.addGrupo(Integer.parseInt(nom.getText()),tit.getText(),gestor.busCu(cod.getText())); // falta el busq curso por cod
+        }
     }
     
     Control gestor;
@@ -109,4 +122,5 @@ public class VentanaAddG extends JFrame {
     private JTextField cod;
     private JTextField nom;
     private JTextField tit;
+    
 }

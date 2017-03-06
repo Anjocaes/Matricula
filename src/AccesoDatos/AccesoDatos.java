@@ -52,13 +52,13 @@ public class AccesoDatos {
     //Curso 
      public void addCurso(Curso a, Ciclo x)throws Exception{
         String sql = "insert into curso(Codigo, Nombre, Credito, HSemanal, Ciclo)values ('%s','%s','%d','%d','%s')";
-        sql=String.format(sql, a.getCodigo(), a.getNombre(), a.getCredito(), a.getHoraSemanal(), x.getCiclo());
+        sql=String.format(sql, a.getCodigo(), a.getNombre(), a.getCredito(), a.getHoraSemanal(), x.getNumero());
         int rs = connect.executeUpdate(sql);       
     }      
      
     //Grupo 
      public void addGrupo(Grupo a, Curso x)throws Exception{
-        String sql = "insert into curso(Numero, Horario, Curso)values ('%d','%s','%s')";
+        String sql = "insert into grupo(Numero, Horario, Curso)values ('%d','%s','%s')";
         sql=String.format(sql, a.getNumero(), a.getHorario(), x.getCodigo());
         int rs = connect.executeUpdate(sql);       
     }
@@ -84,7 +84,7 @@ public class AccesoDatos {
         int rs = connect.executeUpdate(sql);       
     }
     
-    //Select
+//----------------------------------------Select
     
     //Alumno
     public Alumno alumnoGet(String cedula) throws Exception{
@@ -123,7 +123,7 @@ public class AccesoDatos {
         return alum;
     }
     
-        public List<Alumno> alumnoGrupo(Grupo grupo)throws Exception{
+    public List<Alumno> alumnoGrupo(Grupo grupo)throws Exception{
         String sql = "select * from persona, matricula where matricula.grupo = '%d' and persona.tipo = 0";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
@@ -328,7 +328,7 @@ public class AccesoDatos {
     }    
     
     //Curso
-    public Curso cursoGet(int codigo) throws Exception{
+    public Curso cursoGet(String codigo) throws Exception{
         String sql = "select * from curso where curso.codigo = '%s'";
         sql = String.format(sql, codigo);
         ResultSet rs =  connect.executeQuery(sql);
@@ -359,8 +359,10 @@ public class AccesoDatos {
             //String codigo, String nombre, int credito, int horaSemanal
             obj.setCodigo(rs.getString("Codigo"));
             obj.setNombre(rs.getString("Nombre"));
+            System.out.println(""+rs.getString("Nombre"));
             obj.setCredito(rs.getInt("Credito"));
             obj.setHoraSemanal(rs.getInt("HSemanal"));
+            obj.setCiclo(new Ciclo(2017,rs.getString("Ciclo"),"07/08/17","13/11/17"));
             return obj;
         } catch (SQLException ex) {
             return null;

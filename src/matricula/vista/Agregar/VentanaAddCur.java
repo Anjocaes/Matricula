@@ -109,7 +109,9 @@ public class VentanaAddCur extends JFrame {
                 cerrarApp();
             }
         });
-        btA.addActionListener((ActionEvent e) -> {addC();});
+        btA.addActionListener((ActionEvent e) -> {
+            addC();
+        });
         btC.addActionListener((ActionEvent e)->{
             dispose();
         });

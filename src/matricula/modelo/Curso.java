@@ -8,6 +8,7 @@ public class Curso {
         this.nombre = nombre;
         this.credito = credito;
         this.horaSemanal = horaSemanal;
+        this.ciclo=null;
     }
 
     public String getCodigo() {

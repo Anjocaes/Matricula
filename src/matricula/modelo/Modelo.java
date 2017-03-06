@@ -50,10 +50,13 @@ public class Modelo {
                 }
             }
         }
-        //ds.addCurso(new Curso(cod,nom,cre,hS), x);    falta el ciclo 
     }
-    public void createGrupo(int n, String h){
-        //ds.addGrupo(new Grupo(n,h), x);   como meto el curso
+    public void createGrupo(int n, String h,Curso c){
+        try {   
+            ds.addGrupo(new Grupo(n,h), c);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> createGrupo");
+        }
     }
     public void createAdmin(String ced, String nom, String tel, String cor, String cla){
         try {
@@ -102,12 +105,49 @@ public class Modelo {
         }
         return null;
     }
+    public Curso busCu(String c){
+        try {
+            return ds.cursoGet(c);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> busCu");
+        }
+        return null;
+    }
+    
     //------------Actualizar----------------------
     public void updateAl(Alumno a, String cambio, String original){
         try {
             ds.actualizarAlumno(a, cambio, original);
         } catch (Exception ex) {
             System.out.println("Modelo -> updateAlumno");
+        }
+    }
+    public void updatePr(Profesor p, String cambio, String original){
+        try {
+            ds.actualizarProfesor(p, cambio, original);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> updateProfesor");
+        }
+    }
+    public void updateAd(Administrativo ad, String cambio, String original){
+        try {
+            ds.actualizarAdministrativo(ad, cambio, original);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> updateAdmin");
+        }
+    }
+    public void updateMa(Matriculador m, String cambio, String original){
+        try {
+            ds.actualizarMatriculador(m, cambio, original);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> updatrMatri");
+        }
+    }
+    public void updateCu(Curso a, String qCambia,String cambio){
+        try {
+            ds.actualizarCurso(a, qCambia, cambio);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> updateCurso");
         }
     }
     

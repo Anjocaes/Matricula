@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import matricula.control.Control;
 import matricula.modelo.Alumno;
+import matricula.modelo.Curso;
 import matricula.vista.VentanaAdmin;
 
 public class VentanaModAl extends JFrame {
@@ -247,7 +248,7 @@ public class VentanaModAl extends JFrame {
             Cur.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Cur.add(nom5=new JTextField(15),gc);
+            Cur.add(nom=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Cur.add(new JLabel("Codigo: "),gc);
@@ -267,6 +268,13 @@ public class VentanaModAl extends JFrame {
             gc.gridx=1;
             gc.gridy=3;
             Cur.add(h_s=new JTextField(15),gc);
+            gc.gridx=0;
+            gc.gridy=4;
+            Cur.add(new JLabel("Ciclo: "),gc);
+            gc.gridx=1;
+            gc.gridy=4;
+            Cur.add(ci=new JTextField(15),gc);
+                    ci.setEditable(false);
 //------------------Grupo---------------------------
             Gru.setVisible(false);
             gc=new GridBagConstraints();
@@ -296,7 +304,8 @@ public class VentanaModAl extends JFrame {
         btA.addActionListener((ActionEvent e) -> { 
             update(); });
         btC.addActionListener((ActionEvent e) -> { cerrarApp(); });
-        btB.addActionListener((ActionEvent e) -> {obt();});
+        btB.addActionListener((ActionEvent e) -> {
+            obt();});
         cbm1.addActionListener((ActionEvent e) -> {
             ajusPaneles();
         });
@@ -371,57 +380,103 @@ public class VentanaModAl extends JFrame {
     }
     public void obt(){
         String vari=(String) cbm1.getSelectedItem();
-        if(vari.equals(" Alumno")){
-            if(! gestor.busqCAl(id.getText()).equals(null)){
-                 nom1.setText( gestor.busqCAl(id.getText()).getNombre()); 
-                 ced1.setText( gestor.busqCAl(id.getText()).getCedula());
-                 tel1.setText( gestor.busqCAl(id.getText()).getTelefono());
-                 cor1.setText( gestor.busqCAl(id.getText()).getCorreo());
-                 f_nac.setText( gestor.busqCAl(id.getText()).getFechaNacimiento());
-                 clave1.setText( gestor.busqCAl(id.getText()).getClave());
-                 
+        if(!(vari.equals(" Sin Especificar")) || !(id.getText().isEmpty())){
+            if(vari.equals(" Alumno")){
+                if(! gestor.busqCAl(id.getText()).equals(null)){
+                     nom1.setText( gestor.busqCAl(id.getText()).getNombre()); 
+                     ced1.setText( gestor.busqCAl(id.getText()).getCedula());
+                     tel1.setText( gestor.busqCAl(id.getText()).getTelefono());
+                     cor1.setText( gestor.busqCAl(id.getText()).getCorreo());
+                     f_nac.setText( gestor.busqCAl(id.getText()).getFechaNacimiento());
+                     clave1.setText( gestor.busqCAl(id.getText()).getClave());
+                }
             }
-        }
-        if(vari.equals(" Profesor")){
-            if(! gestor.busqCPr(id.getText()).equals(null)){
-                 nom2.setText( gestor.busqCPr(id.getText()).getNombre()); 
-                 ced2.setText( gestor.busqCPr(id.getText()).getCedula());
-                 tel2.setText( gestor.busqCPr(id.getText()).getTelefono());
-                 cor2.setText( gestor.busqCPr(id.getText()).getCorreo());
-                 clave2.setText( gestor.busqCPr(id.getText()).getClave());
-                 
+            if(vari.equals(" Profesor")){
+                if(! gestor.busqCPr(id.getText()).equals(null)){
+                     nom2.setText( gestor.busqCPr(id.getText()).getNombre()); 
+                     ced2.setText( gestor.busqCPr(id.getText()).getCedula());
+                     tel2.setText( gestor.busqCPr(id.getText()).getTelefono());
+                     cor2.setText( gestor.busqCPr(id.getText()).getCorreo());
+                     clave2.setText( gestor.busqCPr(id.getText()).getClave());
+                }
             }
-        }
-        if(vari.equals(" Administrador")){
-            if(! gestor.busqCAd(id.getText()).equals(null)){
-                 nom3.setText( gestor.busqCAd(id.getText()).getNombre()); 
-                 ced3.setText( gestor.busqCAd(id.getText()).getCedula());
-                 tel3.setText( gestor.busqCAd(id.getText()).getTelefono());
-                 cor3.setText( gestor.busqCAd(id.getText()).getCorreo());
-                 clave3.setText( gestor.busqCAd(id.getText()).getClave());
-                 
+            if(vari.equals(" Administrador")){
+                if(! gestor.busqCAd(id.getText()).equals(null)){
+                     nom3.setText( gestor.busqCAd(id.getText()).getNombre()); 
+                     ced3.setText( gestor.busqCAd(id.getText()).getCedula());
+                     tel3.setText( gestor.busqCAd(id.getText()).getTelefono());
+                     cor3.setText( gestor.busqCAd(id.getText()).getCorreo());
+                     clave3.setText( gestor.busqCAd(id.getText()).getClave());
+                }
             }
-        }
-        if(vari.equals(" Matriculador")){
-            if(! gestor.busqCMa(id.getText()).equals(null)){
-                 nom4.setText( gestor.busqCMa(id.getText()).getNombre()); 
-                 ced4.setText( gestor.busqCMa(id.getText()).getCedula());
-                 tel4.setText( gestor.busqCMa(id.getText()).getTelefono());
-                 cor4.setText( gestor.busqCMa(id.getText()).getCorreo());
-                 clave4.setText( gestor.busqCMa(id.getText()).getClave());
-                 
+            if(vari.equals(" Matriculador")){
+                if(! gestor.busqCMa(id.getText()).equals(null)){
+                     nom4.setText( gestor.busqCMa(id.getText()).getNombre()); 
+                     ced4.setText( gestor.busqCMa(id.getText()).getCedula());
+                     tel4.setText( gestor.busqCMa(id.getText()).getTelefono());
+                     cor4.setText( gestor.busqCMa(id.getText()).getCorreo());
+                     clave4.setText( gestor.busqCMa(id.getText()).getClave());
+                }
             }
+            if(vari.equals(" Curso")){
+                Curso cu=gestor.busCu(id.getText());
+                if(! gestor.busCu(id.getText()).equals(null)){
+                    nom.setText(gestor.busCu(id.getText()).getNombre());
+                    cod.setText(gestor.busCu(id.getText()).getCodigo());
+                    cre.setText(String.valueOf(gestor.busCu(id.getText()).getCredito()));
+                    h_s.setText(String.valueOf(gestor.busCu(id.getText()).getHoraSemanal()));
+                    ci.setText(gestor.busCu(id.getText()).getCiclo().getNumero());   
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Los campos para la busqueda son incorrectos");
         }
     }
     public void update(){
         String vari=(String) cbm1.getSelectedItem();
-        if(vari.equals(" Alumno")){
-            gestor.updateAl(gestor.busqCAl(id.getText()),"nombre", nom1.getText());
-            gestor.updateAl(gestor.busqCAl(id.getText()),"telefono", tel1.getText());
-            gestor.updateAl(gestor.busqCAl(id.getText()),"correo", cor1.getText());
-            gestor.updateAl(gestor.busqCAl(id.getText()),"clave", clave1.getText());
-            gestor.updateAl(gestor.busqCAl(id.getText()),"fecha_nacimiento", f_nac.getText());
-        }
+            if(JOptionPane.showConfirmDialog(this, "Seguro que desea realizar los cambios", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                if(vari.equals(" Alumno")){
+                    gestor.updateAl(gestor.busqCAl(id.getText()),"nombre", nom1.getText());
+                    gestor.updateAl(gestor.busqCAl(id.getText()),"telefono", tel1.getText());
+                    gestor.updateAl(gestor.busqCAl(id.getText()),"correo", cor1.getText());
+                    gestor.updateAl(gestor.busqCAl(id.getText()),"clave", clave1.getText());
+                    gestor.updateAl(gestor.busqCAl(id.getText()),"fecha_nacimiento", f_nac.getText());
+                    confirm();
+                }
+                if(vari.equals(" Profesor")){
+                    gestor.updateP(gestor.busqCPr(id.getText()),"nombre", nom2.getText());
+                    gestor.updateP(gestor.busqCPr(id.getText()),"telefono", tel2.getText());
+                    gestor.updateP(gestor.busqCPr(id.getText()),"correo", cor2.getText());
+                    gestor.updateP(gestor.busqCPr(id.getText()),"clave", clave2.getText());
+                    confirm();
+                }
+                if(vari.equals(" Administrativo")){
+                    gestor.updateAd(gestor.busqCAd(id.getText()),"nombre", nom3.getText());
+                    gestor.updateAd(gestor.busqCAd(id.getText()),"telefono", tel3.getText());
+                    gestor.updateAd(gestor.busqCAd(id.getText()),"correo", cor3.getText());
+                    gestor.updateAd(gestor.busqCAd(id.getText()),"clave", clave3.getText());
+                    confirm();
+                }
+                if(vari.equals(" Matriculador")){
+                    gestor.updateM(gestor.busqCMa(id.getText()),"nombre", nom4.getText());
+                    gestor.updateM(gestor.busqCMa(id.getText()),"telefono", tel4.getText());
+                    gestor.updateM(gestor.busqCMa(id.getText()),"correo", cor4.getText());
+                    gestor.updateM(gestor.busqCMa(id.getText()),"clave", clave4.getText());
+                    confirm();
+                }
+                if(vari.equals(" Curso")){
+                    gestor.updateCu(gestor.busCu(id.getText()),"nombre", nom.getText());
+                    gestor.updateCu(gestor.busCu(id.getText()),"credito", cre.getText());
+                    gestor.updateCu(gestor.busCu(id.getText()),"hsemanal", h_s.getText());
+                    confirm();
+                }
+            }
+        
+    }
+    public void confirm(){
+        vad=new VentanaAdmin("Administracion",gestor);
+        vad.init();
+        dispose();
     }
     
     
@@ -437,6 +492,7 @@ public class VentanaModAl extends JFrame {
     private JTextField nom3;    //Admin
     private JTextField nom4;    //Matri
     private JTextField nom5;    //Curso
+    private JTextField nom;
     private JTextField ced1;    //Alumno
     private JTextField ced2;    //Profesor
     private JTextField ced3;    //Administrador
@@ -462,6 +518,7 @@ public class VentanaModAl extends JFrame {
     private JTextField cre;
     private JTextField h_s;
     private JTextField id;
+    private JTextField ci;
     //------------------------------
     JPanel gen=new JPanel();
     JPanel Pro=new JPanel();

@@ -22,14 +22,14 @@ public class Ciclo {
         return fechaIni;
     }
 
-    public void agregarCiclo(int año, String numero, String f_Inicio, String f_Final){
-        ciclo = new Ciclo(año, numero, f_Inicio, f_Final);
-    }
-    
-    public String getCiclo() {
-        return ciclo.numero;
-    }
-    Ciclo ciclo = new Ciclo(2017, "I ciclo", "12/2/17", "21/6/17");
+//    public void agregarCiclo(int año, String numero, String f_Inicio, String f_Final){
+//        ciclo = new Ciclo(año, numero, f_Inicio, f_Final);
+//    }
+//    
+//    public String getCiclo() {
+//        return ciclo.numero;
+//    }
+//    Ciclo ciclo = new Ciclo(2017, "I ciclo", "12/2/17", "21/6/17");
     public String getFechaFin() {
         return fechaFin;
     }
