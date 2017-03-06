@@ -17,6 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -81,7 +82,14 @@ public class VentanaAddCur extends JFrame {
         gc.gridx=1;
         gc.gridy=3;
         inf.add(h_s=new JTextField(15),gc);
-                
+        gc.gridx=0;
+        gc.gridy=4;
+        inf.add(new JLabel("Ciclo: "),gc);
+        gc.gridx=1;
+        gc.gridy=4;
+        inf.add(cbm=new JComboBox(),gc);
+                cbm.addItem(" I Ciclo");
+                cbm.addItem(" II Ciclo");
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
         gc.insets=new Insets(4,4,4,4);
@@ -101,6 +109,7 @@ public class VentanaAddCur extends JFrame {
                 cerrarApp();
             }
         });
+        btA.addActionListener((ActionEvent e) -> {addC();});
         btC.addActionListener((ActionEvent e)->{
             dispose();
         });
@@ -114,6 +123,10 @@ public class VentanaAddCur extends JFrame {
             dispose();
         }
     }
+    public void addC(){
+        String vari=(String) cbm.getSelectedItem();
+        gestor.addCurso(cod.getText(), nom.getText(), Integer.parseInt(cre.getText()), Integer.parseInt(h_s.getText()), vari);
+    }
     Control gestor;
     GridBagConstraints gc;
     //-----------------------
@@ -124,4 +137,5 @@ public class VentanaAddCur extends JFrame {
     private JTextField nom;
     private JTextField cre;
     private JTextField h_s;
+    private JComboBox cbm;
 }

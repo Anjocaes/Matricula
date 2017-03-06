@@ -520,42 +520,42 @@ public class AccesoDatos {
     
     //Alumno
     public void actualizarAlumno(Alumno a, String qCambia, String cambio)throws Exception{
-        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 0";
-        sql=String.format(sql, qCambia, cambio);
+        String sql = "update persona set %s = '%s' where persona.cedula = '%s' and persona.tipo = 0";
+        sql=String.format(sql, qCambia, cambio, a.getCedula());
         int rs = connect.executeUpdate(sql);       
     }
 
     //Profesor
     public void actualizarProfesor(Profesor a, String qCambia, String cambio)throws Exception{
-        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
-        sql=String.format(sql, qCambia, cambio);
+        String sql = "update persona set %s = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio, a.getCedula());
         int rs = connect.executeUpdate(sql);       
     }
 
     //Administrativo
     public void actualizarAdministrativo(Administrativo a, String qCambia, String cambio)throws Exception{
-        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
-        sql=String.format(sql, qCambia, cambio);
+        String sql = "update persona set %s = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio, a.getCedula());
         int rs = connect.executeUpdate(sql);       
     }   
     
     //Matriculador
     public void actualizarMatriculador(Matriculador a, String qCambia, String cambio)throws Exception{
-        String sql = "update persona set '%s' = '%s' where persona.cedula = '%s' and persona.tipo = 1";
-        sql=String.format(sql, qCambia, cambio);
+        String sql = "update persona set %s = '%s' where persona.cedula = '%s' and persona.tipo = 1";
+        sql=String.format(sql, qCambia, cambio, a.getCedula());
         int rs = connect.executeUpdate(sql);       
     }
     
     //Curso
     public void actualizarCurso(Curso a, String qCambia, String cambio)throws Exception{
-        String sql = "update curso set '%s' = '%s' where curso.codigo = '%s'";
+        String sql = "update curso set %s = '%s' where curso.codigo = '%s'";
         sql=String.format(sql, qCambia, cambio, a.getCodigo());
         int rs = connect.executeUpdate(sql);       
     } 
     
     //Grupo
     public void actualizarGrupo(Grupo a, String qCambia, String cambio, Curso c)throws Exception{
-        String sql = "update grupo set '%s' = '%s' where grupo.numero = '%d' and grupo.curso = '%s'";
+        String sql = "update grupo set %s = '%s' where grupo.numero = '%d' and grupo.curso = '%s'";
         sql=String.format(sql, qCambia, cambio, a.getNumero(), c.getCodigo());
         int rs = connect.executeUpdate(sql);       
     }    

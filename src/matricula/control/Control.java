@@ -1,6 +1,10 @@
 package matricula.control;
 
+import matricula.modelo.Administrativo;
+import matricula.modelo.Alumno;
+import matricula.modelo.Matriculador;
 import matricula.modelo.Modelo;
+import matricula.modelo.Profesor;
 
 public class Control {
    public Control(){
@@ -18,11 +22,28 @@ public class Control {
    public void addMatri(String ced, String nom, String tel, String cor, String cl){
        datos.createMatri(ced, nom, tel, cor, cl);
    }
-   public void addCurso(String cod, String nom, int cre, int hS){
-       datos.createCurso(cod, nom, cre, hS);
+   public void addCurso(String cod, String nom, int cre, int hS, String ciclo){
+       datos.createCurso(cod, nom, cre, hS, ciclo);
    }
    public void addGrupo(){
        
+   }
+   //--------------Busqueda---------------------------------------------
+   public Alumno busqCAl(String ced){
+       return datos.busCAl(ced);
+   }
+   public Profesor busqCPr(String ced){
+      return datos.busCPr(ced);
+   }
+   public Matriculador busqCMa(String ced){
+       return datos.busCMa(ced);
+   }
+   public Administrativo busqCAd(String ced){
+       return datos.busCAd(ced);
+   }
+   //----------------Update--------------------------------------------
+   public void updateAl(Alumno a, String cambio, String original){
+       datos.updateAl(a, cambio, original);
    }
    
     Modelo datos;

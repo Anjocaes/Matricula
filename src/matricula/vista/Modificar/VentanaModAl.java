@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import matricula.control.Control;
+import matricula.modelo.Alumno;
 import matricula.vista.VentanaAdmin;
 
 public class VentanaModAl extends JFrame {
@@ -85,32 +86,32 @@ public class VentanaModAl extends JFrame {
             Pro.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Pro.add(nom=new JTextField(15),gc);
+            Pro.add(nom2=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Pro.add(new JLabel("Cedula: "),gc);
             gc.gridx=1;
             gc.gridy=1;
-            Pro.add(ced=new JTextField(15),gc);
-                    ced.setEditable(false);
+            Pro.add(ced2=new JTextField(15),gc);
+                    ced2.setEditable(false);
             gc.gridx=0;
             gc.gridy=2;
             Pro.add(new JLabel("Telefono: "),gc);
             gc.gridx=1;
             gc.gridy=2;
-            Pro.add(tel=new JTextField(15),gc);
+            Pro.add(tel2=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=3;
             Pro.add(new JLabel("Correo: "),gc);
             gc.gridx=1;
             gc.gridy=3;
-            Pro.add(cor=new JTextField(15),gc);
+            Pro.add(cor2=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=4;
             Pro.add(new JLabel("Clave: "),gc);
             gc.gridx=1;
             gc.gridy=4;
-            Pro.add(clave=new JTextField(15),gc);
+            Pro.add(clave2=new JTextField(15),gc);
 //-----------------------------------------------------------
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -133,26 +134,26 @@ public class VentanaModAl extends JFrame {
             Alu.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Alu.add(nom=new JTextField(15),gc);
+            Alu.add(nom1=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Alu.add(new JLabel("Cedula: "),gc);
             gc.gridx=1;
             gc.gridy=1;
-            Alu.add(ced=new JTextField(15),gc);
-                    ced.setEditable(false);
+            Alu.add(ced1=new JTextField(15),gc);
+                    ced1.setEditable(false);
             gc.gridx=0;
             gc.gridy=2;
             Alu.add(new JLabel("Telefono: "),gc);
             gc.gridx=1;
             gc.gridy=2;
-            Alu.add(tel=new JTextField(15),gc);
+            Alu.add(tel1=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=3;
             Alu.add(new JLabel("Correo: "),gc);
             gc.gridx=1;
             gc.gridy=3;
-            Alu.add(cor=new JTextField(15),gc);
+            Alu.add(cor1=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=4;
             Alu.add(new JLabel("Fecha de Nacimiento: "),gc);
@@ -164,7 +165,7 @@ public class VentanaModAl extends JFrame {
             Alu.add(new JLabel("Clave: "),gc);
             gc.gridx=1;
             gc.gridy=5;
-            Alu.add(clave=new JTextField(15),gc);
+            Alu.add(clave1=new JTextField(15),gc);
 //-----------------Administrador--------------------
             Ad.setVisible(false);
             gc=new GridBagConstraints();
@@ -175,32 +176,32 @@ public class VentanaModAl extends JFrame {
             Ad.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Ad.add(nom=new JTextField(15),gc);
+            Ad.add(nom3=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Ad.add(new JLabel("Cedula: "),gc);
             gc.gridx=1;
             gc.gridy=1;
-            Ad.add(ced=new JTextField(15),gc);
-                    ced.setEditable(false);
+            Ad.add(ced3=new JTextField(15),gc);
+                    ced3.setEditable(false);
             gc.gridx=0;
             gc.gridy=2;
             Ad.add(new JLabel("Telefono: "),gc);
             gc.gridx=1;
             gc.gridy=2;
-            Ad.add(tel=new JTextField(15),gc);
+            Ad.add(tel3=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=3;
             Ad.add(new JLabel("Correo: "),gc);
             gc.gridx=1;
             gc.gridy=3;
-            Ad.add(cor=new JTextField(15),gc);
+            Ad.add(cor3=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=4;
             Ad.add(new JLabel("Clave: "),gc);
             gc.gridx=1;
             gc.gridy=4;
-            Ad.add(clave=new JTextField(15),gc);
+            Ad.add(clave3=new JTextField(15),gc);
 //----------------Matriculador----------------------
             Matri.setVisible(false);
             gc=new GridBagConstraints();
@@ -211,32 +212,32 @@ public class VentanaModAl extends JFrame {
             Matri.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Matri.add(nom=new JTextField(15),gc);
+            Matri.add(nom4=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Matri.add(new JLabel("Cedula: "),gc);
             gc.gridx=1;
             gc.gridy=1;
-            Matri.add(ced=new JTextField(15),gc);
-                    ced.setEditable(false);
+            Matri.add(ced4=new JTextField(15),gc);
+                    ced4.setEditable(false);
             gc.gridx=0;
             gc.gridy=2;
             Matri.add(new JLabel("Telefono: "),gc);
             gc.gridx=1;
             gc.gridy=2;
-            Matri.add(tel=new JTextField(15),gc);
+            Matri.add(tel4=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=3;
             Matri.add(new JLabel("Correo: "),gc);
             gc.gridx=1;
             gc.gridy=3;
-            Matri.add(cor=new JTextField(15),gc);
+            Matri.add(cor4=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=4;
             Matri.add(new JLabel("Clave: "),gc);
             gc.gridx=1;
             gc.gridy=4;
-            Matri.add(clave=new JTextField(15),gc);
+            Matri.add(clave4=new JTextField(15),gc);
 //--------------------Curso-------------------------
             Cur.setVisible(false);
             gc=new GridBagConstraints();
@@ -246,7 +247,7 @@ public class VentanaModAl extends JFrame {
             Cur.add(new JLabel("Nombre: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Cur.add(nom=new JTextField(15),gc);
+            Cur.add(nom5=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Cur.add(new JLabel("Codigo: "),gc);
@@ -276,7 +277,7 @@ public class VentanaModAl extends JFrame {
             Gru.add(new JLabel("Numero: "),gc);
             gc.gridx=1;
             gc.gridy=0;
-            Gru.add(nom=new JTextField(15),gc);
+            Gru.add(num=new JTextField(15),gc);
             gc.gridx=0;
             gc.gridy=1;
             Gru.add(new JLabel("Horario: "),gc);
@@ -292,11 +293,10 @@ public class VentanaModAl extends JFrame {
                 cerrarApp();
             }
         });
-      //btA.addActionListener((ActionEvent e) -> { addAdmin(); });
+        btA.addActionListener((ActionEvent e) -> { 
+            update(); });
         btC.addActionListener((ActionEvent e) -> { cerrarApp(); });
-        btB.addActionListener((ActionEvent e) -> {
-            
-        });
+        btB.addActionListener((ActionEvent e) -> {obt();});
         cbm1.addActionListener((ActionEvent e) -> {
             ajusPaneles();
         });
@@ -370,7 +370,58 @@ public class VentanaModAl extends JFrame {
        }
     }
     public void obt(){
-        
+        String vari=(String) cbm1.getSelectedItem();
+        if(vari.equals(" Alumno")){
+            if(! gestor.busqCAl(id.getText()).equals(null)){
+                 nom1.setText( gestor.busqCAl(id.getText()).getNombre()); 
+                 ced1.setText( gestor.busqCAl(id.getText()).getCedula());
+                 tel1.setText( gestor.busqCAl(id.getText()).getTelefono());
+                 cor1.setText( gestor.busqCAl(id.getText()).getCorreo());
+                 f_nac.setText( gestor.busqCAl(id.getText()).getFechaNacimiento());
+                 clave1.setText( gestor.busqCAl(id.getText()).getClave());
+                 
+            }
+        }
+        if(vari.equals(" Profesor")){
+            if(! gestor.busqCPr(id.getText()).equals(null)){
+                 nom2.setText( gestor.busqCPr(id.getText()).getNombre()); 
+                 ced2.setText( gestor.busqCPr(id.getText()).getCedula());
+                 tel2.setText( gestor.busqCPr(id.getText()).getTelefono());
+                 cor2.setText( gestor.busqCPr(id.getText()).getCorreo());
+                 clave2.setText( gestor.busqCPr(id.getText()).getClave());
+                 
+            }
+        }
+        if(vari.equals(" Administrador")){
+            if(! gestor.busqCAd(id.getText()).equals(null)){
+                 nom3.setText( gestor.busqCAd(id.getText()).getNombre()); 
+                 ced3.setText( gestor.busqCAd(id.getText()).getCedula());
+                 tel3.setText( gestor.busqCAd(id.getText()).getTelefono());
+                 cor3.setText( gestor.busqCAd(id.getText()).getCorreo());
+                 clave3.setText( gestor.busqCAd(id.getText()).getClave());
+                 
+            }
+        }
+        if(vari.equals(" Matriculador")){
+            if(! gestor.busqCMa(id.getText()).equals(null)){
+                 nom4.setText( gestor.busqCMa(id.getText()).getNombre()); 
+                 ced4.setText( gestor.busqCMa(id.getText()).getCedula());
+                 tel4.setText( gestor.busqCMa(id.getText()).getTelefono());
+                 cor4.setText( gestor.busqCMa(id.getText()).getCorreo());
+                 clave4.setText( gestor.busqCMa(id.getText()).getClave());
+                 
+            }
+        }
+    }
+    public void update(){
+        String vari=(String) cbm1.getSelectedItem();
+        if(vari.equals(" Alumno")){
+            gestor.updateAl(gestor.busqCAl(id.getText()),"nombre", nom1.getText());
+            gestor.updateAl(gestor.busqCAl(id.getText()),"telefono", tel1.getText());
+            gestor.updateAl(gestor.busqCAl(id.getText()),"correo", cor1.getText());
+            gestor.updateAl(gestor.busqCAl(id.getText()),"clave", clave1.getText());
+            gestor.updateAl(gestor.busqCAl(id.getText()),"fecha_nacimiento", f_nac.getText());
+        }
     }
     
     
@@ -381,12 +432,31 @@ public class VentanaModAl extends JFrame {
     private JButton btC;
     private JButton btB;
     //--------textField------------
-    private JTextField nom;
-    private JTextField ced;
-    private JTextField tel;
-    private JTextField cor;
+    private JTextField nom1;    //alumno
+    private JTextField nom2;    //Profesor
+    private JTextField nom3;    //Admin
+    private JTextField nom4;    //Matri
+    private JTextField nom5;    //Curso
+    private JTextField ced1;    //Alumno
+    private JTextField ced2;    //Profesor
+    private JTextField ced3;    //Administrador
+    private JTextField ced4;    //Matri
+    private JTextField ced5;
+    private JTextField tel1;
+    private JTextField tel2;
+    private JTextField tel3;
+    private JTextField tel4;
+    private JTextField tel5;
+    private JTextField cor1;
+    private JTextField cor2;
+    private JTextField cor3;
+    private JTextField cor4;
+    private JTextField clave1;
+    private JTextField clave2;
+    private JTextField clave3;
+    private JTextField clave4;
+    private JTextField num;
     private JTextField f_nac;
-    private JTextField clave;
     private JTextField tit;
     private JTextField cod;
     private JTextField cre;
@@ -401,6 +471,5 @@ public class VentanaModAl extends JFrame {
     JPanel Gru = new JPanel(new GridBagLayout());
     JPanel Cur = new JPanel(new GridBagLayout());
     private JComboBox cbm1;
-    
     private VentanaAdmin vad;
 }
