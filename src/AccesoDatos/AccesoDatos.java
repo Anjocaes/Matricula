@@ -65,8 +65,8 @@ public class AccesoDatos {
     
      //Matricula
      public void matricular(Grupo x, Alumno a)throws Exception{
-        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('','%s','%d','%s')";
-        sql=String.format(sql, a.getCedula(), x.getNumero(), "");
+        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('1','%s','%d','%s')";
+        sql=String.format(sql, a.getCedula(), x.getNumero(), 0);
         int rs = connect.executeUpdate(sql);       
     }
      
@@ -527,7 +527,7 @@ public class AccesoDatos {
    
     //Grupo
    public  void eliminarGrupo(Grupo a)throws Exception{
-        String sql = "delete from grupo where grupo.codigo = '%d'";
+        String sql = "delete from grupo where grupo.numero = '%d'";
         sql=String.format(sql, a.getNumero());
         int rs = connect.executeUpdate(sql);          
     }      

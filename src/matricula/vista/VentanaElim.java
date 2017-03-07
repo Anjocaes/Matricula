@@ -176,7 +176,7 @@ public class VentanaElim extends JFrame {
         if(vari.equals(" Grupo")){
             if(gestor.busGru(Integer.parseInt(id.getText())) != null){
                if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-                    gestor.eliCu(gestor.busCu(id.getText()));
+                    gestor.eliGru(gestor.busGru(Integer.parseInt(id.getText())));
                     vAd=new VentanaAdmin("Administrador",gestor);
                     vAd.init();
                     dispose();

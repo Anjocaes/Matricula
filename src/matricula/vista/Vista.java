@@ -91,34 +91,37 @@ public class Vista extends JFrame {
     public void selecUsser(){
         String usser=usu.getText();
         String pass=cla.getText();
-        
-        if(null != gestor.busqCAl(usser)){
-            if(gestor.busqCAl(usser).getClave().equals(pass)){
-                val=new VentanaAlumno("Alumno",gestor);
-                val.init();
-                dispose();
+        if(!usu.getText().isEmpty() || !cla.getText().isEmpty()){        
+            if(null != gestor.busqCAl(usser)){
+                if(gestor.busqCAl(usser).getClave().equals(pass)){
+                    val=new VentanaAlumno("Alumno",gestor);
+                    val.init();
+                    dispose();
+                }
             }
-        }
-        if(null != gestor.busqCPr(usser)){
-            if(gestor.busqCPr(usser).getClave().equals(pass)){
-                vp=new VentanaProfesor("Profesor",gestor);
-                vp.init();
-                dispose();
+            if(null != gestor.busqCPr(usser)){
+                if(gestor.busqCPr(usser).getClave().equals(pass)){
+                    vp=new VentanaProfesor("Profesor",gestor);
+                    vp.init();
+                    dispose();
+                }
             }
-        }
-        if(null != gestor.busqCAd(usser)){
-            if(gestor.busqCAd(usser).getClave().equals(pass)){
-                vad= new VentanaAdmin("Administracion",gestor);
-                vad.init();
-                dispose();
+            if(null != gestor.busqCAd(usser)){
+                if(gestor.busqCAd(usser).getClave().equals(pass)){
+                    vad= new VentanaAdmin("Administracion",gestor);
+                    vad.init();
+                    dispose();
+                }
             }
-        }
-        if(null != gestor.busqCMa(usser)){
-            if(gestor.busqCMa(usser).getCedula().equals(pass)){
-                vm=new VentanaMatri("Matriculador",gestor);
-                vm.init();
-                dispose();
+            if(null != gestor.busqCMa(usser)){
+                if(gestor.busqCMa(usser).getClave().equals(pass)){
+                    vm=new VentanaMatri("Matriculador",gestor);
+                    vm.init();
+                    dispose();
+                }
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Los campos solicitados estan vacios");
         }
     }
     

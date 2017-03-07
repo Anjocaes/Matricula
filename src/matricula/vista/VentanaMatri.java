@@ -105,7 +105,7 @@ public class VentanaMatri extends JFrame {
             }
         });
         btA.addActionListener((ActionEvent e) -> {
-            addMatricula();});
+            opc();});
         btC.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,12 +136,24 @@ public class VentanaMatri extends JFrame {
          v.init();
          dispose();
      }
+     public void opc(){
+         String op=(String) cbm1.getSelectedItem();
+         if(op.equals(" Matricular")){
+             addMatricula();
+         }
+         if(op.equals(" Desmatricular ")){
+             desmatri();
+         }
+     }
      public void addMatricula(){
          if(gestor.busGru(Integer.parseInt(cur.getText())) != null){
              if(gestor.busqCAl(ced.getText()) != null){
                  gestor.matricular(gestor.busGru(Integer.parseInt(cur.getText())), gestor.busqCAl(ced.getText()));
              }
          }
+     }
+     public void desmatri(){
+         
      }
     
     Control gestor;
