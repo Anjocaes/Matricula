@@ -102,14 +102,16 @@ public class VentanaAddG extends JFrame {
         }
     }
     public boolean vali(){
-//        if(){
-//            
-//        }
+        if(nom.getText().isEmpty()||cod.getText().isEmpty() || tit.getText().isEmpty()){
+            return false;
+        }
         return true;
     }
     public void addG(){
         if(vali()){
-            gestor.addGrupo(Integer.parseInt(nom.getText()),tit.getText(),gestor.busCu(cod.getText())); // falta el busq curso por cod
+            if(JOptionPane.showConfirmDialog(this, "Desea añadir el nuevo grupo", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                gestor.addGrupo(Integer.parseInt(nom.getText()),tit.getText(),gestor.busCu(cod.getText())); // falta el busq curso por cod
+            }
         }
     }
     

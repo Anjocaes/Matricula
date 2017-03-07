@@ -477,42 +477,42 @@ public class AccesoDatos {
     //Eliminar
     
     //Alumno
-    void eliminarAlumno(Alumno a)throws Exception{
+    public void eliminarAlumno(Alumno a)throws Exception{
         String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 0";
-        sql=String.format(sql, a.getCedula(), a.getTipo());
+        sql=String.format(sql, a.getCedula());
         int rs = connect.executeUpdate(sql);          
     }
     
     //Profesor
-    void eliminarProfesor(Profesor a)throws Exception{
+    public void eliminarProfesor(Profesor a)throws Exception{
         String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
         sql=String.format(sql, a.getCedula(), a.getTipo());
         int rs = connect.executeUpdate(sql);          
     }
    
     //Administrativo
-    void eliminarAdministrativo(Administrativo a)throws Exception{
+    public void eliminarAdministrativo(Administrativo a)throws Exception{
         String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
         sql=String.format(sql, a.getCedula(), a.getTipo());
         int rs = connect.executeUpdate(sql);          
     }    
 
     //Matriculador
-    void eliminarMatriculador(Matriculador a)throws Exception{
+    public void eliminarMatriculador(Matriculador a)throws Exception{
         String sql = "delete from persona where persona.cedula = '%s' and persona.tipo = 1";
         sql=String.format(sql, a.getCedula(), a.getTipo());
         int rs = connect.executeUpdate(sql);          
     }
 
     //Curso
-    void eliminarCurso(Curso a)throws Exception{
+    public void eliminarCurso(Curso a)throws Exception{
         String sql = "delete from curso where curso.codigo = '%s'";
         sql=String.format(sql, a.getCodigo());
         int rs = connect.executeUpdate(sql);          
     }  
    
     //Grupo
-    void eliminarGrupo(Grupo a)throws Exception{
+   public  void eliminarGrupo(Grupo a)throws Exception{
         String sql = "delete from grupo where grupo.codigo = '%d'";
         sql=String.format(sql, a.getNumero());
         int rs = connect.executeUpdate(sql);          

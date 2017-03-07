@@ -127,7 +127,11 @@ public class VentanaAddCur extends JFrame {
     }
     public void addC(){
         String vari=(String) cbm.getSelectedItem();
-        gestor.addCurso(cod.getText(), nom.getText(), Integer.parseInt(cre.getText()), Integer.parseInt(h_s.getText()), vari);
+        if(JOptionPane.showConfirmDialog(this, "Desea agregar el Curso", "Confirmar", 
+                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+            gestor.addCurso(cod.getText(), nom.getText(), Integer.parseInt(cre.getText()), Integer.parseInt(h_s.getText()), vari);
+            dispose();
+        }
     }
     Control gestor;
     GridBagConstraints gc;

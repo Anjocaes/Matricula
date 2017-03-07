@@ -72,54 +72,61 @@ public class Modelo {
             System.out.println("Modelo -> createMatri");
         }
     }
+    
     //------------------------Busquedas
     public Alumno busCAl(String ced){
         try {
            return ds.alumnoGet(ced);
         } catch (Exception ex) {
             System.out.println("Modelo -> busCAl");
+            return null;
         }
-        return null;
+        //return null;
     }
     public Profesor busCPr(String ced){
         try {
             return ds.profesorGet(ced);
         } catch (Exception ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Modelo -> busCPr");
+            return null;
         }
-        return null;
+        //return null;
     }
     public Administrativo busCAd(String ced){
         try {
             return ds.administrativoGet(ced);
         } catch (Exception ex) {
-            Logger.getLogger(Modelo.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Modelo -> busCAd");
+            return null;
         }
-        return null;
+        //return null;
     }
     public Matriculador busCMa(String ced){
         try {
             return ds.matriculadorGet(ced);
         } catch (Exception ex) {
             System.out.println("Modelo -> busMatriculas");
+            return null;
         }
-        return null;
+        //return null;
     }
     public Curso busCu(String c){
         try {
             return ds.cursoGet(c);
         } catch (Exception ex) {
             System.out.println("Modelo -> busCu");
+            return null;
         }
-        return null;
+        //return null;
     }
     public Grupo busGru(int n){
         try {
             return ds.grupoGet(n);
         } catch (Exception ex) {
             System.out.println("Modelo -> busGru");
+            return null;
         }
-        return null;
+        //return null;
     }
     
     //------------Actualizar----------------------
@@ -163,6 +170,50 @@ public class Modelo {
             ds.actualizarGrupo(g, qCambia, cambio, c);
         } catch (Exception ex) {
             System.out.println("Modelo -> updateGrupo");
+        }
+    }
+    
+//--------------Eliminar
+    public void elimAl(Alumno a){
+        try {
+            ds.eliminarAlumno(a);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> ElimAl");
+        }
+    }
+    public void elimPr(Profesor p){
+        try {
+            ds.eliminarProfesor(p);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> EliPro");
+        }
+    }
+    public void elimAd(Administrativo ad){
+        try {
+            ds.eliminarAdministrativo(ad);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> EliAd");
+        }
+    }
+    public void eliMa(Matriculador ma){
+        try {
+            ds.eliminarMatriculador(ma);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> EliMa");
+        }
+    }
+    public void eliCur(Curso c){
+        try {
+            ds.eliminarCurso(c);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> EliCu");
+        }
+    }
+    public void eliGru(Grupo g){
+        try {
+            ds.eliminarGrupo(g);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> EliGru");
         }
     }
     

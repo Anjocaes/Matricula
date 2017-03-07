@@ -28,9 +28,9 @@ import matricula.control.Control;
 
 
 public class VentanaElim extends JFrame {
-    public VentanaElim(String titulo,Control cont){
+    public VentanaElim(String titulo, Control cont){
         super(titulo);
-        cont=gestor;
+        gestor=cont;
          ajustarComponentes(getContentPane());
         confiEventos();
        // pack();
@@ -53,6 +53,14 @@ public class VentanaElim extends JFrame {
         principal.add(gen, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
         //------------------------------------------
+        JPanel mensaje = new JPanel(new GridBagLayout());
+        gc=new GridBagConstraints();
+        gc.insets=new Insets(4,4,4,4);
+        gc.gridx=0;
+        gc.gridy=0;
+        mensaje.add(lb =new JLabel("Hola!"),gc);
+        gen.add(mensaje,BorderLayout.CENTER);
+        
         JPanel sal= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
         gc.insets=new Insets(4,4,4,4);
@@ -99,6 +107,7 @@ public class VentanaElim extends JFrame {
                 cerrarApp();
             }
         });
+        btA.addActionListener((ActionEvent e) -> {elim();});
         btC.addActionListener((ActionEvent e) -> {cerrarApp();});
     }
     public void init(){
@@ -111,6 +120,79 @@ public class VentanaElim extends JFrame {
             dispose();
         }
     }
+    public void elim(){
+        String vari=(String) cbm1.getSelectedItem();
+        if(vari.equals(" Alumno")){
+            if(gestor.busqCAl(id.getText()) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.elimAl(gestor.busqCAl(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+            
+        }
+        if(vari.equals(" Profesor")){
+            if(gestor.busqCPr(id.getText()) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.eliPr(gestor.busqCPr(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+        }
+        if(vari.equals(" Administrador")){
+            if(gestor.busqCAd(id.getText()) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.eliAd(gestor.busqCAd(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+        }
+        if(vari.equals(" Matriculador")){
+            if(gestor.busqCMa(id.getText()) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.eliMa(gestor.busqCMa(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+        }
+        if(vari.equals(" Curso")){
+            if(gestor.busCu(id.getText()) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.eliCu(gestor.busCu(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+        }
+        if(vari.equals(" Grupo")){
+            if(gestor.busGru(Integer.parseInt(id.getText())) != null){
+               if(JOptionPane.showConfirmDialog(this, "Confirma la eliminacion del Alumno", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    gestor.eliCu(gestor.busCu(id.getText()));
+                    vAd=new VentanaAdmin("Administrador",gestor);
+                    vAd.init();
+                    dispose();
+               }
+            }
+        }
+    }
+    public void bus(){
+        String vari=(String) cbm1.getSelectedItem();
+        if(vari.equals(" Alumno")){
+            if(gestor.busqCAl(id.getText()) != null){
+                System.out.println("Algo");
+            }
+        } else {
+        }
+    }
     
     Control gestor;
     
@@ -119,6 +201,7 @@ public class VentanaElim extends JFrame {
     private JButton btB;
     private JComboBox cbm1;
     private JTextField id;
+    private JLabel lb;
     
     GridBagConstraints gc;
     private VentanaAdmin vAd;

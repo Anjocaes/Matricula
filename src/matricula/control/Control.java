@@ -12,6 +12,7 @@ public class Control {
    public Control(){
        datos=new Modelo();
    }
+//--------------------Añadir----------------------
    public void addAlmuno(String ced, String nom, String tel, String cor, String cl, String car, String f_n){
       datos.createAlumno(ced, nom, tel, cor, cl, car, f_n);
    }
@@ -30,7 +31,8 @@ public class Control {
    public void addGrupo(int n, String h, Curso c){
        datos.createGrupo(n, h, c);
    }
-   //--------------Busqueda---------------------------------------------
+   
+//--------------Busqueda---------------------------------------------
    public Alumno busqCAl(String ced){
        return datos.busCAl(ced);
    }
@@ -49,7 +51,8 @@ public class Control {
    public Grupo busGru(int n){
        return datos.busGru(n);
    }
-   //----------------Update--------------------------------------------
+   
+//----------------Update--------------------------------------------
    public void updateAl(Alumno a, String cambio, String original){
        datos.updateAl(a, cambio, original);
    }
@@ -68,6 +71,26 @@ public class Control {
    public void updateGru(Grupo g, String qCambia, String cambio, Curso c){
        datos.updateGru(g, qCambia, cambio, c);
    }
+   
+//-------------Elimiar--------------------
+  public void elimAl(Alumno a){
+      datos.elimAl(a);
+  } 
+  public void eliPr(Profesor p){
+      datos.elimPr(p);
+  }
+  public void eliAd(Administrativo ad){
+      datos.elimAd(ad);
+  }
+  public void eliMa(Matriculador ma){
+      datos.eliMa(ma);
+  }
+  public void eliCu(Curso c){
+      datos.eliCur(c);
+  }
+  public void eliGru(Grupo g){
+      datos.eliGru(g);
+  }
    
     Modelo datos;
     //admin 0

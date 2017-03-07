@@ -425,17 +425,20 @@ public class VentanaModAl extends JFrame {
                 }
             }
             if(vari.equals(" Curso")){
-                Curso cu=gestor.busCu(id.getText());
-                if(! gestor.busCu(id.getText()).equals(null)){
+                //Curso cu=gestor.busCu(id.getText());
+                if( gestor.busCu(id.getText()) != null){
                     nom.setText(gestor.busCu(id.getText()).getNombre());
                     cod.setText(gestor.busCu(id.getText()).getCodigo());
                     cre.setText(String.valueOf(gestor.busCu(id.getText()).getCredito()));
                     h_s.setText(String.valueOf(gestor.busCu(id.getText()).getHoraSemanal()));
                     ci.setText(gestor.busCu(id.getText()).getCiclo().getNumero());   
                 }
+                else{
+                    JOptionPane.showMessageDialog(this, "El curso no existe");
+                }
             }
             if(vari.equals(" Grupo")){
-                Curso cu=gestor.busCu(id.getText());
+                //Curso cu=gestor.busCu(id.getText());
                 if(! gestor.busGru(Integer.parseInt(id.getText())).equals(null)){
                     num.setText(""+gestor.busGru(Integer.parseInt(id.getText())).getNumero());
                     hor.setText(gestor.busGru(Integer.parseInt(id.getText())).getHorario());

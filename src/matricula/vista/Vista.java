@@ -91,18 +91,35 @@ public class Vista extends JFrame {
     public void selecUsser(){
         String usser=usu.getText();
         String pass=cla.getText();
+        
         if(null != gestor.busqCAl(usser)){
-         
+            if(gestor.busqCAl(usser).getClave().equals(pass)){
+                val=new VentanaAlumno("Alumno",gestor);
+                val.init();
+                dispose();
+            }
         }
-//       vm=new VentanaMatri("Matriculador",gestor);
-//       vm.init();
-        vad= new VentanaAdmin("Administracion",gestor);
-        vad.init();
-        //mod=new VentanaModAl("Modificar",gestor);
-        //mod.init();
-        //vel = new VentanaElim("Eliminacion",gestor);
-        //vel.init();
-        this.dispose();
+        if(null != gestor.busqCPr(usser)){
+            if(gestor.busqCPr(usser).getClave().equals(pass)){
+                vp=new VentanaProfesor("Profesor",gestor);
+                vp.init();
+                dispose();
+            }
+        }
+        if(null != gestor.busqCAd(usser)){
+            if(gestor.busqCAd(usser).getClave().equals(pass)){
+                vad= new VentanaAdmin("Administracion",gestor);
+                vad.init();
+                dispose();
+            }
+        }
+        if(null != gestor.busqCMa(usser)){
+            if(gestor.busqCMa(usser).getCedula().equals(pass)){
+                vm=new VentanaMatri("Matriculador",gestor);
+                vm.init();
+                dispose();
+            }
+        }
     }
     
     private final Control gestor;
@@ -117,4 +134,6 @@ public class Vista extends JFrame {
     private VentanaAdmin vad;
     private VentanaModAl mod;
     private VentanaElim vel;
+    private VentanaAlumno val;
+    private VentanaProfesor vp;
 }
