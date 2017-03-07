@@ -29,8 +29,8 @@ CREATE TABLE `moviles`.`matricula` (
   `Grupo` INT NOT NULL,
   `Nota` INT,
   PRIMARY KEY (`Grupo`, `CedAlumno`, `CedProfesor`, `Nota`),
-  CONSTRAINT `fk_profesor` FOREIGN KEY (CedProfesor) REFERENCES `moviles`.`persona`(Cedula) ON DELETE CASCADE,
-  CONSTRAINT `fk_alumno` FOREIGN KEY (CedAlumno) REFERENCES `moviles`.`persona`(Cedula) ON DELETE CASCADE,
+  CONSTRAINT `fk_profesor` FOREIGN KEY (CedProfesor) REFERENCES `moviles`.`persona`(Cedula),
+  CONSTRAINT `fk_alumno` FOREIGN KEY (CedAlumno) REFERENCES `moviles`.`persona`(Cedula),
   CONSTRAINT `fk_grupo` FOREIGN KEY (Grupo) REFERENCES `moviles`.`grupo`(Numero) ON DELETE CASCADE);
   
 CREATE TABLE `moviles`.`persona` (

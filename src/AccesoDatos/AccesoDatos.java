@@ -70,12 +70,26 @@ public class AccesoDatos {
         int rs = connect.executeUpdate(sql);       
     }
      
+     //desMatricula
+     public void desMatricular(Grupo x, Alumno a)throws Exception{
+        String sql = "delete CedAlumno from matricula where CedAlumno = '%s' and Grupo = '%d'";
+        sql=String.format(sql, a.getCedula(), x.getNumero());
+        int rs = connect.executeUpdate(sql);       
+    }
+     
     //Pone el profesor
     public void ponerProfesor(Profesor p, Grupo g, Curso c)throws Exception{
         String sql = "update matricula set CedProfesor = '%s' where matricula.Grupo = '%d' and grupo.curso = '%s'";
         sql=String.format(sql, p.getCedula(), g.getNumero(), c.getCodigo());
         int rs = connect.executeUpdate(sql);       
     }
+
+    //Quita el profesor
+    public void quitaProfesor(Profesor p, Grupo g)throws Exception{
+        String sql = "delete CedProfesor from matricula where CedProfesor = '%s' and Grupo = '%d'";
+        sql=String.format(sql, p.getCedula(), g.getNumero());
+        int rs = connect.executeUpdate(sql);       
+    }    
      
     //Pone la nota
     public void ponerNota(Grupo x, Alumno a, int n)throws Exception{
