@@ -69,6 +69,7 @@ public class VentanaAddG extends JFrame {
         gc.gridx=1;
         gc.gridy=2;
         inf.add(cod=new JTextField(15),gc);
+        
                      
         JPanel btns= new JPanel(new GridBagLayout());
         gc=new GridBagConstraints();
@@ -111,6 +112,7 @@ public class VentanaAddG extends JFrame {
         if(vali()){
             if(JOptionPane.showConfirmDialog(this, "Desea añadir el nuevo grupo", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                 gestor.addGrupo(Integer.parseInt(nom.getText()),tit.getText(),gestor.busCu(cod.getText())); // falta el busq curso por cod
+                dispose();
             }
         }
     }
@@ -124,5 +126,6 @@ public class VentanaAddG extends JFrame {
     private JTextField cod;
     private JTextField nom;
     private JTextField tit;
+    private JTextField cur;
     
 }

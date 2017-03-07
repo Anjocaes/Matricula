@@ -91,6 +91,10 @@ public class Control {
   public void eliGru(Grupo g){
       datos.eliGru(g);
   }
+//----------Matricula---------------------------
+  public void matricular(Grupo g, Alumno a){
+      datos.matricula(g, a);
+  }
    
     Modelo datos;
     //admin 0

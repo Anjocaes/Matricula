@@ -76,6 +76,12 @@ public class VentanaMatri extends JFrame {
         gc.gridx=1;
         gc.gridy=2;
         inf.add(cod=new JTextField(10),gc);
+        gc.gridx=0;
+        gc.gridy=3;
+        inf.add(new JLabel("Grupo: "),gc);
+        gc.gridx=1;
+        gc.gridy=3;
+        inf.add(cur=new JTextField(15),gc);
         gen.add(inf,BorderLayout.CENTER);
         //-----------------------------------------
         JPanel btns= new JPanel(new GridBagLayout());
@@ -98,22 +104,20 @@ public class VentanaMatri extends JFrame {
                 cerrarApp();
             }
         });
+        btA.addActionListener((ActionEvent e) -> {
+            addMatricula();});
         btC.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
               clean();
             }
-            
         });
-         btD.addActionListener(new ActionListener(){
+        btD.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
               abrirVL();
             }
-            
-        });
-        
-        
+        }); 
     }
     public void init(){
          setVisible(true);
@@ -132,6 +136,13 @@ public class VentanaMatri extends JFrame {
          v.init();
          dispose();
      }
+     public void addMatricula(){
+         if(gestor.busGru(Integer.parseInt(cur.getText())) != null){
+             if(gestor.busqCAl(ced.getText()) != null){
+                 gestor.matricular(gestor.busGru(Integer.parseInt(cur.getText())), gestor.busqCAl(ced.getText()));
+             }
+         }
+     }
     
     Control gestor;
     //-----Panel Info-------
@@ -139,6 +150,7 @@ public class VentanaMatri extends JFrame {
     private JComboBox cbm1;
     private JTextField ced;
     private JTextField cod;
+    private JTextField cur;
     //----Panel botones-----------------
     private JButton btA;
     private JButton btC;

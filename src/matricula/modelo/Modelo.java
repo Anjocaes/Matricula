@@ -216,6 +216,14 @@ public class Modelo {
             System.out.println("Modelo -> EliGru");
         }
     }
+//---------------Matricula
+    public void matricula(Grupo x, Alumno a){
+        try {
+            ds.matricular(x, a);
+        } catch (Exception ex) {
+            System.out.println("Modelo -> Matricular");
+        }
+    }
     
     Universidad universidad;
     Carrera carrera;
