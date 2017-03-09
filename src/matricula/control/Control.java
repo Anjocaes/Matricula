@@ -1,11 +1,13 @@
 package matricula.control;
 
+import java.util.List;
 import matricula.modelo.Administrativo;
 import matricula.modelo.Alumno;
 import matricula.modelo.Curso;
 import matricula.modelo.Grupo;
 import matricula.modelo.Matriculador;
 import matricula.modelo.Modelo;
+import matricula.modelo.Objeto;
 import matricula.modelo.Profesor;
 
 public class Control {
@@ -94,6 +96,16 @@ public class Control {
 //----------Matricula---------------------------
   public void matricular(Grupo g, Alumno a){
       datos.matricula(g, a);
+  }
+//------------Historial----------------
+  public List<Objeto> historial(String ced){
+      return datos.getHist(ced);
+  }
+  public List<Curso> getAllCursos(){
+      return datos.getAllCurso();
+  }
+  public List<Grupo> grupoCurso(String cod){
+      return datos.getGrupoCurso(cod);
   }
    
     Modelo datos;

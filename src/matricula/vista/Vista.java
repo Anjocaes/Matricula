@@ -1,5 +1,6 @@
 package matricula.vista;
 
+import matricula.vista.Mostar.VentanaAlumno;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -94,7 +95,7 @@ public class Vista extends JFrame {
         if(!usu.getText().isEmpty() || !cla.getText().isEmpty()){        
             if(null != gestor.busqCAl(usser)){
                 if(gestor.busqCAl(usser).getClave().equals(pass)){
-                    val=new VentanaAlumno("Alumno",gestor);
+                    val=new VentanaAlumno("Alumno",gestor,usser);
                     val.init();
                     dispose();
                 }

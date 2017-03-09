@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import matricula.conexion.Conector;
 import matricula.modelo.Administrativo;
 import matricula.modelo.Alumno;
@@ -12,6 +14,7 @@ import matricula.modelo.Curso;
 import matricula.modelo.Grupo;
 import matricula.modelo.Matriculador;
 import matricula.modelo.Nota;
+import matricula.modelo.Objeto;
 import matricula.modelo.Profesor;
 
 public class AccesoDatos {
@@ -124,6 +127,7 @@ public class AccesoDatos {
     }
     
     public List<Alumno> alumnoTotal()throws Exception{
+        alum = new ArrayList<>();
         String sql = "select * from persona where persona.tipo = 0";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
@@ -138,6 +142,7 @@ public class AccesoDatos {
     }
     
     public List<Alumno> alumnoGrupo(Grupo grupo)throws Exception{
+        alum= new ArrayList<>();
         String sql = "select * from persona, matricula where matricula.grupo = '%d' and persona.tipo = 0";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
@@ -151,6 +156,21 @@ public class AccesoDatos {
         return alum;
     }
     
+    public List<Objeto> alumGrupos(String a)throws Exception{
+        obs= new ArrayList<>();
+        String sql = "select distinct grupo.numero, grupo.curso, matricula.nota from  grupo, matricula where matricula.CedAlumno = '%s'";
+        sql = String.format(sql,a);
+        ResultSet rs =  connect.executeQuery(sql);
+        while (rs.next()){
+            Object obj = toObjeto(rs);
+            if(obj != null)
+                obs.add((Objeto) obj);
+            else
+                throw new Exception("No existen Objetos");
+        }
+        return obs;
+    }
+        
     private Alumno toAlumno(ResultSet rs){
         try {
             Alumno obj= new Alumno("","","","","","",0);
@@ -165,6 +185,19 @@ public class AccesoDatos {
             return obj;
         } catch (SQLException ex) {
             return null;
+        }
+    }
+    
+    private Objeto toObjeto(ResultSet rs){
+       
+        try {
+            Objeto ob=new Objeto("",0,0);
+            ob.setNomC(rs.getString("Curso"));
+            ob.setGrupo(rs.getInt("Numero"));
+            ob.setNota(rs.getInt("Nota"));
+            return ob;
+        } catch (SQLException ex) {
+             return null;
         }
     }
     
@@ -206,6 +239,7 @@ public class AccesoDatos {
     }
     
     public List<Profesor> profesorGrupo(Grupo grupo)throws Exception{
+        prof = new ArrayList<>();
         String sql = "select * from persona, matricula where matricula.grupo = '%d' and persona.tipo = 1";
         sql = String.format(sql,grupo.getNumero());
         ResultSet rs =  connect.executeQuery(sql);
@@ -259,6 +293,7 @@ public class AccesoDatos {
     }    
     
     public List<Administrativo> administrativoTotal()throws Exception{
+        adm= new ArrayList<>();
         String sql = "select * from persona where persona.tipo = 2";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
@@ -312,6 +347,7 @@ public class AccesoDatos {
     }    
     
     public List<Matriculador> matriculadorTotal()throws Exception{
+        mat= new ArrayList<>();
         String sql = "select * from persona where persona.tipo = 3";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
@@ -354,7 +390,8 @@ public class AccesoDatos {
     }
     
     public List<Curso> cursoTotal()throws Exception{
-        String sql = "select * from curso";
+        cur = new ArrayList<>();
+        String sql = "select distinct * from curso";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
@@ -396,6 +433,7 @@ public class AccesoDatos {
     }
     
     public List<Grupo> grupoTotal()throws Exception{
+        gru = new ArrayList<>();
         String sql = "select * from grupo";
         sql = String.format(sql);
         ResultSet rs =  connect.executeQuery(sql);
@@ -409,9 +447,10 @@ public class AccesoDatos {
         return gru;
     }
     
-    public List<Grupo> grupoCurso(Curso c)throws Exception{
+    public List<Grupo> grupoCurso(String s)throws Exception{
+        gru= new ArrayList<>();
         String sql = "select * from grupo where grupo.curso = '%s'";
-        sql = String.format(sql);
+        sql = String.format(sql,s);
         ResultSet rs =  connect.executeQuery(sql);
         while (rs.next()){
             Grupo obj = toGrupo(rs);
@@ -425,6 +464,7 @@ public class AccesoDatos {
     //Profe ver los cursos que tiene
     
     public List<Grupo> profesorCurso(Profesor a)throws Exception{
+        gru= new ArrayList<>();
         String sql = "select * from grupo, matricula where matricula.CedProfesor = '%s'";
         sql = String.format(sql, a.getCedula());
         ResultSet rs =  connect.executeQuery(sql);
@@ -463,6 +503,7 @@ public class AccesoDatos {
     }
     
     public List<Nota> notasCurso(Curso c)throws Exception{
+        not = new ArrayList<>(); 
         String sql = "select nota from matricula, grupo where grupo.curso = '%s'";
         sql = String.format(sql, c.getCodigo());
         ResultSet rs =  connect.executeQuery(sql);
@@ -577,12 +618,13 @@ public class AccesoDatos {
     }    
     
     
-    ArrayList<Alumno> alum = new ArrayList<>();
-    ArrayList<Profesor> prof = new ArrayList<>();
-    ArrayList<Administrativo> adm = new ArrayList<>();
-    ArrayList<Matriculador> mat = new ArrayList<>();
-    ArrayList<Curso> cur = new ArrayList<>();
-    ArrayList<Grupo> gru = new ArrayList<>();
-    ArrayList<Nota> not = new ArrayList<>();
+    ArrayList<Alumno> alum;
+    ArrayList<Profesor> prof;
+    ArrayList<Administrativo> adm;
+    ArrayList<Matriculador> mat;
+    ArrayList<Curso> cur;
+    ArrayList<Grupo> gru;
+    ArrayList<Nota> not;
+    ArrayList<Objeto> obs;
     private final Conector connect;
 }

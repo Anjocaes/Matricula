@@ -1,6 +1,8 @@
 package matricula.modelo;
 
 import AccesoDatos.AccesoDatos;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -216,6 +218,7 @@ public class Modelo {
             System.out.println("Modelo -> EliGru");
         }
     }
+    
 //---------------Matricula
     public void matricula(Grupo x, Alumno a){
         try {
@@ -224,6 +227,29 @@ public class Modelo {
             System.out.println("Modelo -> Matricular");
         }
     }
+//--------------Historial------------
+    public List<Objeto> getHist(String ced){
+        try {
+            return ds.alumGrupos(ced);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    public List<Curso> getAllCurso(){
+        try {
+            return ds.cursoTotal();
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    public List<Grupo> getGrupoCurso(String cod){
+        try {
+            return ds.grupoCurso(cod);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+    
     
     Universidad universidad;
     Carrera carrera;
