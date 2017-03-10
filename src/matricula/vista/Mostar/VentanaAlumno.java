@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import matricula.control.Control;
 import matricula.modelo.Objeto;
 import matricula.vista.VentanaAdmin;
+import matricula.vista.Vista;
 
 public class VentanaAlumno extends JFrame {
      public VentanaAlumno(String titulo, Control cont,String cedula){
@@ -117,8 +118,8 @@ public class VentanaAlumno extends JFrame {
     }
      public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            vAd=new VentanaAdmin("Administrador",gestor);
-            vAd.init();
+            v=new Vista("Login",gestor);
+            v.init();
             dispose();
         }
     }
@@ -139,6 +140,7 @@ public class VentanaAlumno extends JFrame {
     
     GridBagConstraints gc;
     private VentanaAdmin vAd;
+    private Vista v;
     
     private JScrollPane desplazamientoTabla;
     private JTable tablaDatos;

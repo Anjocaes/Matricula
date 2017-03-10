@@ -484,6 +484,11 @@ public class AccesoDatos {
             //int numero, String horario
             obj.setNumero(rs.getInt("Numero"));
             obj.setHorario(rs.getString("Horario"));
+            try {
+                obj.setCu(cursoGet(rs.getString("Curso")));
+            } catch (Exception ex) {
+                System.out.println("Mame en acceso con lo que yo hice -Marco");
+            }
             return obj;
         } catch (SQLException ex) {
             return null;

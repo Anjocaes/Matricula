@@ -13,6 +13,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
 import matricula.control.Control;
 import matricula.modelo.Grupo;
 import matricula.vista.Agregar.VentanaAddAl;
+import matricula.vista.Modificar.ModGru;
 import matricula.vista.VentanaAdmin;
 
 /**
@@ -116,6 +119,14 @@ public class verGrupos extends JFrame {
         });
         btC.addActionListener((ActionEvent e) -> {cerrarApp();});
         btA.addActionListener((ActionEvent e) -> {});
+        tablaDatos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if(e.getClickCount()== 2){
+                    abrirVG();
+                }
+            }
+        });
     }
      public void cerrarApp(){
         if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
@@ -124,15 +135,22 @@ public class verGrupos extends JFrame {
     }
     public void abrirVentana(){
         if(gestor.grupoCurso(ced)!=null){
-            gestor.grupoCurso(ced).stream().forEach((Grupo o) -> {modelo.addRow(new Object[]{num(),o.getHorario()});});
+            gestor.grupoCurso(ced).stream().forEach((Grupo o) -> {modelo.addRow(new Object[]{o.getNumero(),o.getHorario()});});
             
         }else{
             JOptionPane.showMessageDialog(this, "El curso no posee grupos vigentes");
         }
     }
-    public String num(){
-        return "";
+    public void abrirVG(){
+        int i= tablaDatos.getSelectedRow();
+         int id =  (int) tablaDatos.getValueAt(i, cont);
+         mg = new ModGru("Modificar grupo", gestor, id );
+         mg.init();
     }
+    public void addG(){
+        
+    }
+    
      
   Control gestor;
     private JButton btA;
@@ -143,9 +161,9 @@ public class verGrupos extends JFrame {
     private JLabel lb;
     
     GridBagConstraints gc;
-    private VentanaAdmin vAd;
-    private VentanaAddAl vaddA;
+    private ModGru mg;
     private verGrupos vg;
+    
     
     private JScrollPane desplazamientoTabla;
     private JTable tablaDatos;

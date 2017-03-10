@@ -126,7 +126,7 @@ public class VentanaModAl extends JFrame {
         gen.add(btns,BorderLayout.PAGE_END);
 //-----------Alumno--------------------------------------------
             Alu.setLayout(new GridBagLayout());
-            Alu.setVisible(false);
+            
             gc=new GridBagConstraints();
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
@@ -168,7 +168,7 @@ public class VentanaModAl extends JFrame {
             gc.gridy=5;
             Alu.add(clave1=new JTextField(15),gc);
 //-----------------Administrador--------------------
-            Ad.setVisible(false);
+            
             gc=new GridBagConstraints();
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
@@ -204,7 +204,7 @@ public class VentanaModAl extends JFrame {
             gc.gridy=4;
             Ad.add(clave3=new JTextField(15),gc);
 //----------------Matriculador----------------------
-            Matri.setVisible(false);
+           
             gc=new GridBagConstraints();
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
@@ -240,7 +240,7 @@ public class VentanaModAl extends JFrame {
             gc.gridy=4;
             Matri.add(clave4=new JTextField(15),gc);
 //--------------------Curso-------------------------
-            Cur.setVisible(false);
+            
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
             gc.gridx=0;
@@ -276,7 +276,7 @@ public class VentanaModAl extends JFrame {
             Cur.add(ci=new JTextField(15),gc);
                     ci.setEditable(false);
 //------------------Grupo---------------------------
-            Gru.setVisible(false);
+           
             gc=new GridBagConstraints();
             gc=new GridBagConstraints();
             gc.insets=new Insets(6,6,6,6);
