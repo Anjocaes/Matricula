@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package matricula.vista.Mostar;
+package matricula.vista.Agregar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,19 +7,11 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -33,21 +20,14 @@ import javax.swing.ScrollPaneConstants;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import matricula.control.Control;
-import matricula.modelo.Grupo;
-import matricula.vista.Agregar.VentanaAddAl;
 import matricula.vista.Modificar.ModGru;
-import matricula.vista.VentanaAdmin;
+import matricula.vista.Mostar.verGrupos;
 
-/**
- *
- * @author Marko
- */
-public class verGrupos extends JFrame {
-    public verGrupos(String titulo, Control cont, String cod){
+public class AddProfesorToGrupo extends JFrame {
+    public AddProfesorToGrupo(String titulo, Control cont){
         super(titulo);
         gestor=cont;
-         ced=cod;
-        modelo = new ModeloTabla3();
+        modelo = new ModeloTabla4();
         ajustarComponentes(getContentPane());
         confiEventos();
        // pack();
@@ -57,7 +37,7 @@ public class verGrupos extends JFrame {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     public void ajustarComponentes(Container c){
-       c.setLayout(new BorderLayout());
+         c.setLayout(new BorderLayout());
         JPanel principal=new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -106,54 +86,16 @@ public class verGrupos extends JFrame {
         btns.add(btC=new JButton("Cancelar"),gc);
         gen.add(btns,BorderLayout.PAGE_END);
     }
-    public void init(){
-        setVisible(true);
-        abrirVentana();
-    }
     public void confiEventos(){
-         this.addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosing(WindowEvent ew){
-                cerrarApp();
-            }
-        });
-        btC.addActionListener((ActionEvent e) -> {cerrarApp();});
-        btA.addActionListener((ActionEvent e) -> {});
-        tablaDatos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if(e.getClickCount()== 2){
-                    abrirVG();
-                }
-            }
-        });
+        
     }
-     public void cerrarApp(){
-        if(JOptionPane.showConfirmDialog(this, "Desea salir", "Confirmar", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
-            dispose();
-        }
-    }
-    public void abrirVentana(){
-        if(gestor.grupoCurso(ced)!=null){
-            gestor.grupoCurso(ced).stream().forEach((Grupo o) -> {modelo.addRow(new Object[]{o.getNumero(),o.getHorario()});});
-            
-        }else{
-            JOptionPane.showMessageDialog(this, "El curso no posee grupos vigentes");
-        }
-    }
-    public void abrirVG(){
-        int i= tablaDatos.getSelectedRow();
-         int id =  (int) tablaDatos.getValueAt(i, cont);
-         mg = new ModGru("Modificar grupo", gestor, id );
-         mg.init();
-    }
-    public void addG(){
+    public void init(){
         
     }
     
-     
-  Control gestor;
-    private JButton btA;
+    Control gestor;
+    ModeloTabla4 modelo;
+     private JButton btA;
     private JButton btC;
     private JButton btB;
     private JComboBox cbm1;
@@ -167,18 +109,18 @@ public class verGrupos extends JFrame {
     
     private JScrollPane desplazamientoTabla;
     private JTable tablaDatos;
-    ModeloTabla3 modelo;
     String ced;
-    ArrayList<Integer> f = new ArrayList<>();
-    int cont =0;
+    
 }
-class ModeloTabla3 extends DefaultTableModel {
-        public ModeloTabla3() {
+class ModeloTabla4 extends DefaultTableModel {
+        public ModeloTabla4() {
             super(new Object[][]{},
-                    new String[]{"Numero", "Horario"});
+                    new String[]{"Numero", "Horario", "Curso"});
         }
         @Override
         public boolean isCellEditable (int filas,int Columnas){
             return false;	
 	}
-    }
+}
+
+

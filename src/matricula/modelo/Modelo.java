@@ -249,6 +249,13 @@ public class Modelo {
             return null;
         }
     }
+    public List<Grupo> getCursoPorGrupo(String cod){
+        try {
+            return ds.profeToGrupos(cod);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
     
     
     Universidad universidad;

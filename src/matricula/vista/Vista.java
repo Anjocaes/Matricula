@@ -5,10 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -102,7 +99,7 @@ public class Vista extends JFrame {
             }
             if(null != gestor.busqCPr(usser)){
                 if(gestor.busqCPr(usser).getClave().equals(pass)){
-                    vp=new VentanaProfesor("Profesor",gestor);
+                    vp=new VentanaProfesor("Profesor",gestor, usser);
                     vp.init();
                     dispose();
                 }

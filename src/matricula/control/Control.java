@@ -105,7 +105,7 @@ public class Control {
       return datos.getAllCurso();
   }
   public List<Grupo> grupoCurso(String cod){
-      return datos.getGrupoCurso(cod);
+      return datos.getCursoPorGrupo(cod);
   }
    
     Modelo datos;

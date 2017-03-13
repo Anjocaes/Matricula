@@ -68,7 +68,7 @@ public class AccesoDatos {
     
      //Matricula
      public void matricular(Grupo x, Alumno a)throws Exception{
-        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('1','%s','%d','%s')";
+        String sql = "insert into matricula(CedProfesor, CedAlumno, Grupo, Nota)values ('P.A','%s','%d','%s')";
         sql=String.format(sql, a.getCedula(), x.getNumero(), 0);
         int rs = connect.executeUpdate(sql);       
     }
@@ -252,6 +252,23 @@ public class AccesoDatos {
         }
         return prof;
     }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public List<Grupo> profeToGrupos(String ced) throws SQLException, Exception{
+        gru = new ArrayList<>();
+        String sql = "select * from matricula, grupo where matricula.CedProfesor = '%s';";
+        sql = String.format(sql, ced);
+        ResultSet rs = connect.executeQuery(sql);
+        while(rs.next()){
+            Grupo obj = toGrupo(rs);
+            if(obj != null){
+                gru.add(obj);
+            }else{
+               throw new Exception("No existen Profesor"); 
+            }
+        }
+        return gru;
+    }
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         
     private Profesor toProfesor(ResultSet rs){
         try {
